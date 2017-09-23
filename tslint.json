@@ -1,6 +1,6 @@
 {
   "rulesDirectory": [
-    "node_modules/codelyzer"
+    "src/app"
   ],
   "rules": {
     "arrow-return-shorthand": true,
@@ -135,6 +135,16 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "invoke-injectable": true
+    "invoke-injectable": true,
+    "no-unused-variable": [
+      true, 
+      "check-parameters"
+    ],
+    "typedef": [
+      true, 
+      "call-signature", 
+      "parameter", 
+      "member-variable-declaration"
+    ]
   }
 }
