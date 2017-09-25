@@ -1,3 +1,4 @@
+![](https://travis-ci.org/jere1862/mixing-console-frontend.svg?branch=master)
 # MixingConsoleFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
