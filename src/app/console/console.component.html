@@ -1,0 +1,57 @@
+<md-grid-list cols="2" rowHeight="800px">
+  <md-grid-tile [colspan]="1">
+    <md-card class="console-output-card">
+      <md-card-content>
+        <md-toolbar color="accent">
+          <span>{{ 'CONSOLE.FIX_NODE' | translate }}</span>
+        </md-toolbar>
+        <md-grid-list cols="4" rowHeight="550px">
+          <md-grid-tile [colspan]="1">
+            {{ 'CONSOLE.VOLUME' | translate }}
+            <app-console-slider [value]="fixNode.volume"></app-console-slider>
+          </md-grid-tile>
+          <md-grid-tile [colspan]="2">
+            {{ 'CONSOLE.EQUALIZER' | translate }}
+            <app-console-slider [value]="fixNode.low"></app-console-slider>
+            <app-console-slider [value]="fixNode.med"></app-console-slider>
+            <app-console-slider [value]="fixNode.high"></app-console-slider>
+          </md-grid-tile>
+          <md-grid-tile [colspan]="1">
+            {{ 'CONSOLE.LEVELS' | translate }}
+          </md-grid-tile>
+        </md-grid-list>
+      </md-card-content>
+    </md-card>
+  </md-grid-tile>
+
+  <md-grid-tile [colspan]="1">
+    <md-card class="console-output-card">
+      <md-card-content>
+        <md-toolbar color="accent">
+          <span>{{ 'CONSOLE.MOBILE_NODES' | translate }}</span>
+        </md-toolbar>
+        <md-tab-group>
+          <span *ngFor="let mobileNode of mobileNodes">
+            <md-tab label="{{ mobileNode.name | translate }}">
+              <md-grid-list cols="4" rowHeight="500px">
+                <md-grid-tile [colspan]="1">
+                  {{ 'CONSOLE.VOLUME' | translate }}
+                  <app-console-slider [value]="mobileNode.volume"></app-console-slider>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="2">
+                  {{ 'CONSOLE.EQUALIZER' | translate }}
+                  <app-console-slider [value]="mobileNode.low"></app-console-slider>
+                  <app-console-slider [value]="mobileNode.med"></app-console-slider>
+                  <app-console-slider [value]="mobileNode.high"></app-console-slider>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="1">
+                  {{ 'CONSOLE.LEVELS' | translate }}
+                </md-grid-tile>
+              </md-grid-list>
+            </md-tab>
+          </span>
+        </md-tab-group>
+      </md-card-content>
+    </md-card>
+  </md-grid-tile>
+</md-grid-list>
