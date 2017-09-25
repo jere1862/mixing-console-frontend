@@ -7,7 +7,15 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  private language: string;
+  private _language: string;
+
+  get language(): string {
+    return this._language;
+  }
+
+  set language(language: string) {
+    this._language = language;
+  }
 
   constructor(private translateService: TranslateService) {}
 

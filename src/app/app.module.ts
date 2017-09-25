@@ -5,16 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './map/map.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
-
-import { AgmCoreModule } from '@agm/core';
-import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
