@@ -8,6 +8,7 @@
     "MOBILE_NODES": "Noeuds mobiles",
     "VOLUME": "Volume",
     "EQUALIZER": "Égaliseur",
-    "LEVELS": "Niveaux"
+    "LEVELS": "Niveaux",
+    "AUTOMATIC_ADJUSTMENT": "Ajuster les niveaux automatiquement"
   }
 }

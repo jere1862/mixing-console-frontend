@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class ConsoleComponent implements OnInit {
   mobileNodes: Array<AudioOutput>;
   fixNode: AudioOutput;
+  autoAdjust: boolean = false;
 
   constructor(translateService: TranslateService) { }
 
