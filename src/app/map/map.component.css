@@ -4,8 +4,6 @@ agm-map {
 
 .map-holder{
   width: 80%;
-  margin-top: 1%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1% auto 0;
   padding: 0;
 }

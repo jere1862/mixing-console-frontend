@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import { Pipe, PipeTransform } from '@angular/core';
-import { MaterialModule } from '../material.module';
 import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -33,7 +32,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, MapComponent, MockPipe],
+      declarations: [ DashboardComponent, MapComponent, MockPipe ],
       providers: [
         {
           provide: TranslateService,
@@ -42,9 +41,6 @@ describe('DashboardComponent', () => {
         {
           provide: HttpClient
         }
-      ],
-      imports: [
-        MaterialModule
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
