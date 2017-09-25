@@ -1,0 +1,11 @@
+agm-map {
+  height: 50vh;
+}
+
+.map-holder{
+  width: 80%;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
