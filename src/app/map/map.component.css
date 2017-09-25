@@ -1,0 +1,9 @@
+agm-map {
+  height: 50vh;
+}
+
+.map-holder{
+  width: 80%;
+  margin: 1% auto 0;
+  padding: 0;
+}
