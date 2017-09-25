@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AudioOutput } from '../models/audio-output';
+import { AudioNode } from '../models/audio-node';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,8 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class ConsoleComponent implements OnInit {
-  mobileNodes: Array<AudioOutput>;
-  fixNode: AudioOutput;
+  mobileNodes: Array<AudioNode>;
+  fixNode: AudioNode;
   autoAdjust: boolean = false;
 
   constructor(translateService: TranslateService) { }
@@ -22,10 +22,10 @@ export class ConsoleComponent implements OnInit {
   }
 
   initializeMobileNodes(): void {
-    this.mobileNodes = new Array<AudioOutput>();
+    this.mobileNodes = new Array<AudioNode>();
 
     for (let i = 0; i < 6; ++i) {
-      const mobileNode: AudioOutput = new AudioOutput();
+      const mobileNode: AudioNode = new AudioNode();
       mobileNode.name = 'Noeud mobile ' + i;
       mobileNode.volume = Math.floor(Math.random() * 257);
       mobileNode.high = Math.floor(Math.random() * 257);
@@ -37,7 +37,7 @@ export class ConsoleComponent implements OnInit {
   }
 
   initializeFixNode(): void {
-    this.fixNode = new AudioOutput;
+    this.fixNode = new AudioNode;
     this.fixNode.volume = Math.floor(Math.random() * 257);
     this.fixNode.high = Math.floor(Math.random() * 257);
     this.fixNode.med = Math.floor(Math.random() * 257);

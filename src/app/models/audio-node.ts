@@ -1,4 +1,4 @@
-export class AudioOutput {
+export class AudioNode {
   name: string;
   volume: number;
   low: number;
