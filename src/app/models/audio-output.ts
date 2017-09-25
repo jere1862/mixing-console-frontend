@@ -4,6 +4,8 @@ export class AudioOutput {
   low: number;
   med: number;
   high: number;
+  latitude: number;
+  longitude: number;
 
   constructor() {
     this.name = '';
@@ -11,5 +13,7 @@ export class AudioOutput {
     this.low = 0;
     this.med = 0;
     this.high = 0;
+    this.latitude = 0;
+    this.longitude = 0;
   }
 }
