@@ -8,19 +8,13 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DashboardComponent implements OnInit {
   private _language: string;
-
-  get language(): string {
-    return this._language;
-  }
-
-  set language(language: string) {
-    this._language = language;
-  }
+  private _nextLanguage: string;
 
   constructor(private translateService: TranslateService) {}
 
   ngOnInit(): void {
     this.language = this.translateService.currentLang;
+    this.setNextLanguage();
   }
 
   changeLanguage(): void {
@@ -31,6 +25,32 @@ export class DashboardComponent implements OnInit {
     }
 
     this.translateService.use(this.language);
+
+    this.setNextLanguage();
+  }
+
+  setNextLanguage(): void {
+    if (this.language === 'fr') {
+      this.nextLanguage = 'en';
+    } else {
+      this.nextLanguage = 'fr';
+    }
+  }
+
+  get language(): string {
+    return this._language;
+  }
+
+  set language(language: string) {
+    this._language = language;
+  }
+
+  get nextLanguage(): string {
+    return this._nextLanguage;
+  }
+
+  set nextLanguage(language: string) {
+    this._nextLanguage = language;
   }
 
 }
