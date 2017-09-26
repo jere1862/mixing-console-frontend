@@ -13,6 +13,7 @@ export class ConsoleComponent implements OnInit {
   mobileNodes: Array<AudioNode>;
   fixNode: AudioNode;
   autoAdjust: boolean = false;
+  numberOfMobileNodes: number;
 
   constructor(translateService: TranslateService) { }
 
@@ -22,9 +23,10 @@ export class ConsoleComponent implements OnInit {
   }
 
   initializeMobileNodes(): void {
+    this.numberOfMobileNodes = 6;
     this.mobileNodes = new Array<AudioNode>();
 
-    for (let i = 0; i < 6; ++i) {
+    for (let i = 0; i < this.numberOfMobileNodes; ++i) {
       const mobileNode: AudioNode = new AudioNode();
       mobileNode.name = 'Noeud mobile ' + i;
       mobileNode.volume = Math.floor(Math.random() * 257);
@@ -42,6 +44,7 @@ export class ConsoleComponent implements OnInit {
     this.fixNode.high = Math.floor(Math.random() * 257);
     this.fixNode.med = Math.floor(Math.random() * 257);
     this.fixNode.low = Math.floor(Math.random() * 257);
+    this.fixNode.isFix = true;
   }
 
 }

@@ -6,6 +6,7 @@ export class AudioNode {
   high: number;
   latitude: number;
   longitude: number;
+  isFix: boolean;
 
   constructor() {
     this.name = '';
@@ -15,5 +16,6 @@ export class AudioNode {
     this.high = 0;
     this.latitude = 0;
     this.longitude = 0;
+    this.isFix = false;
   }
 }

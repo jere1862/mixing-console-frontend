@@ -31,6 +31,7 @@ describe('MapComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
   it('should contain an agm-map', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('agm-map')).toBeTruthy();
