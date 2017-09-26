@@ -1,0 +1,58 @@
+<md-grid-list cols="2" rowHeight="800px">
+  <md-grid-tile [colspan]="1">
+    <md-card id="fix-card" class="console-output-card mat-elevation-z6">
+      <md-card-content>
+        <md-toolbar color="accent">
+          <span>{{ 'CONSOLE.FIX_NODE' | translate }}</span>
+        </md-toolbar>
+        <md-grid-list cols="4" rowHeight="1:2">
+          <md-grid-tile [colspan]="1">
+            <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
+            <app-console-slider [value]="fixNode.volume"></app-console-slider>
+          </md-grid-tile>
+          <md-grid-tile [colspan]="2">
+            <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
+            <app-console-slider [value]="fixNode.low"></app-console-slider>
+            <app-console-slider [value]="fixNode.med"></app-console-slider>
+            <app-console-slider [value]="fixNode.high"></app-console-slider>
+          </md-grid-tile>
+          <md-grid-tile [colspan]="1">
+            <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
+          </md-grid-tile>
+        </md-grid-list>
+      </md-card-content>
+    </md-card>
+  </md-grid-tile>
+
+  <md-grid-tile [colspan]="1">
+    <md-card id="mobile-card" class="console-output-card mat-elevation-z6">
+      <md-card-content>
+        <md-toolbar color="accent">
+          <span>{{ 'CONSOLE.MOBILE_NODES' | translate }}</span>
+        </md-toolbar>
+        <md-tab-group>
+          <span *ngFor="let mobileNode of mobileNodes">
+            <md-tab label="{{ mobileNode.name | translate }}">
+              <md-grid-list cols="4" rowHeight="1:2">
+                <md-grid-tile [colspan]="1">
+                  <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
+                  <app-console-slider [value]="mobileNode.volume"></app-console-slider>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="2">
+                  <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
+                  <app-console-slider [value]="mobileNode.low"></app-console-slider>
+                  <app-console-slider [value]="mobileNode.med"></app-console-slider>
+                  <app-console-slider [value]="mobileNode.high"></app-console-slider>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="1">
+                  <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
+                </md-grid-tile>
+              </md-grid-list>
+            </md-tab>
+          </span>
+        </md-tab-group>
+        <md-checkbox class="automatic-adjustment" [(ngModel)]="autoAdjust">{{ 'CONSOLE.AUTOMATIC_ADJUSTMENT' | translate }}</md-checkbox>
+      </md-card-content>
+    </md-card>
+  </md-grid-tile>
+</md-grid-list>
