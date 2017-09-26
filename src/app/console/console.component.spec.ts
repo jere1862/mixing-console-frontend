@@ -59,33 +59,25 @@ describe('ConsoleComponent', () => {
     it ('should contain all slider', () => {
       const compiled = fixture.debugElement.nativeElement;
       const TOTAL_NUMBER_OF_SLIDERS: number = 8;
-      let numberOfSliders: number = 0;
 
-      compiled.querySelectorAll('app-console-slider').forEach( () => {
-        numberOfSliders++;
-      });
-
-      expect(numberOfSliders).toEqual(TOTAL_NUMBER_OF_SLIDERS);
+      expect(compiled.querySelectorAll('app-console-slider').length).toEqual(TOTAL_NUMBER_OF_SLIDERS);
     });
 
     it ('should contain all tabs', () => {
       const compiled = fixture.debugElement.nativeElement;
-      let numberOfTabs: number = 0;
 
-      compiled.querySelectorAll('.mat-tab-label').forEach( () => {
-        numberOfTabs++;
-      });
-
-      expect(numberOfTabs).toEqual(component.numberOfMobileNodes);
+      expect(compiled.querySelectorAll('.mat-tab-label').length).toEqual(component.numberOfMobileNodes);
     });
 
     it ('should contain a card for the fix node', () => {
       const compiled = fixture.debugElement.nativeElement;
+
       expect(compiled.querySelector('#fix-card')).toBeTruthy();
     });
 
     it ('should contain a card for the mobile node', () => {
       const compiled = fixture.debugElement.nativeElement;
+
       expect(compiled.querySelector('#mobile-card')).toBeTruthy();
     });
   });
