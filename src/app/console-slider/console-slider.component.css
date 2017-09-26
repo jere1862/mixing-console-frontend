@@ -1,0 +1,14 @@
+.slider {
+  height: 35vh;
+  margin-right: 5%;
+  margin-top: 50px;
+}
+
+.mat-slider-thumb {
+  border-radius: 0 !important;
+  right: -20px !important;
+  width: 40px !important;
+  height: 20px !important;
+  bottom: -5px !important;
+  transform: scale(.7) !important;
+}

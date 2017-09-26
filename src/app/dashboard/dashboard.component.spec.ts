@@ -61,6 +61,7 @@ describe('DashboardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
   it('should change language', () => {
     expect(component.language).toBe(INITIAL_CURRENT_LANG);
     component.changeLanguage();

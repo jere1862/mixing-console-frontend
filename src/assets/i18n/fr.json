@@ -1,5 +1,14 @@
 {
   "DASHBOARD": {
     "TITLE": "Console de mixage"
+  },
+  "CONSOLE": {
+    "FIX_NODE": "Noeud fixe",
+    "MOBILE_NODE": "Noeud mobile",
+    "MOBILE_NODES": "Noeuds mobiles",
+    "VOLUME": "Volume",
+    "EQUALIZER": "Égaliseur",
+    "LEVELS": "Niveaux",
+    "AUTOMATIC_ADJUSTMENT": "Ajuster les niveaux automatiquement"
   }
 }
