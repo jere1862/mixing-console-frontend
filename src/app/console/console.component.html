@@ -5,7 +5,7 @@
         <md-toolbar color="accent">
           <span>{{ 'CONSOLE.FIX_NODE' | translate }}</span>
         </md-toolbar>
-        <md-grid-list cols="4" rowHeight="550px">
+        <md-grid-list cols="4" rowHeight="1:2">
           <md-grid-tile [colspan]="1">
             <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
             <app-console-slider [value]="fixNode.volume"></app-console-slider>
@@ -33,7 +33,7 @@
         <md-tab-group>
           <span *ngFor="let mobileNode of mobileNodes">
             <md-tab label="{{ mobileNode.name | translate }}">
-              <md-grid-list cols="4" rowHeight="500px">
+              <md-grid-list cols="4" rowHeight="1:2">
                 <md-grid-tile [colspan]="1">
                   <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
                   <app-console-slider [value]="mobileNode.volume"></app-console-slider>
