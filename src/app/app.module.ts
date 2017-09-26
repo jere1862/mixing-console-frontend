@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
@@ -9,6 +10,11 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
+import { NodeService } from './node/node.service';
+
+// Imports for loading & configuring the in-memory web api
+import { HttpInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryNodeService }  from './node/in-memory-node.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -25,7 +31,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCKCFCS2vYlGoddTC_X35OKeX5j6QZbUIw'
     }),
+    HttpModule,
     HttpClientModule,
+    HttpInMemoryWebApiModule.forRoot(InMemoryNodeService),
     AppRoutingModule,
     MaterialModule,
     TranslateModule.forRoot({
@@ -36,7 +44,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [],
+  providers: [NodeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

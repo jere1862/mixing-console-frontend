@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MapComponent } from '../map/map.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { NodeService } from '../Node/node.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -32,15 +33,17 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        HttpClientModule,
+        HttpClientTestingModule
+      ],
       declarations: [ DashboardComponent, MapComponent, MockPipe ],
       providers: [
         {
           provide: TranslateService,
           useClass: TranslateServiceStub
         },
-        {
-          provide: HttpClient
-        }
+        NodeService
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -65,5 +68,8 @@ describe('DashboardComponent', () => {
 
     const translateServiceStub: TranslateService = fixture.debugElement.injector.get(TranslateService);
     expect(translateServiceStub.use).toHaveBeenCalledWith(OTHER_LANGUAGE);
+  });
+  it('should call the node service', () => {
+    // TODO make this tests
   });
 });
