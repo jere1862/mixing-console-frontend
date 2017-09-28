@@ -1,11 +1,11 @@
-<md-grid-list cols="2" rowHeight="800px">
+<md-grid-list class="console-grid" cols="3">
   <md-grid-tile [colspan]="1">
     <md-card id="fix-card" class="console-output-card mat-elevation-z6">
       <md-card-content>
         <md-toolbar color="accent">
           <span>{{ 'CONSOLE.FIX_NODE' | translate }}</span>
         </md-toolbar>
-        <md-grid-list cols="4" rowHeight="1:2">
+        <md-grid-list cols="4" rowHeight="1:3.4">
           <md-grid-tile [colspan]="1">
             <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
             <app-console-slider [value]="fixNode.volume"></app-console-slider>
@@ -25,6 +25,10 @@
   </md-grid-tile>
 
   <md-grid-tile [colspan]="1">
+    <app-map></app-map>
+  </md-grid-tile>
+
+  <md-grid-tile [colspan]="1">
     <md-card id="mobile-card" class="console-output-card mat-elevation-z6">
       <md-card-content>
         <md-toolbar color="accent">
@@ -33,7 +37,7 @@
         <md-tab-group>
           <span *ngFor="let mobileNode of mobileNodes">
             <md-tab label="{{ mobileNode.name | translate }}">
-              <md-grid-list cols="4" rowHeight="1:2">
+              <md-grid-list cols="4" rowHeight="1:3">
                 <md-grid-tile [colspan]="1">
                   <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
                   <app-console-slider [value]="mobileNode.volume"></app-console-slider>

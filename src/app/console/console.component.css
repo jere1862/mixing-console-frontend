@@ -1,3 +1,12 @@
+.console-grid {
+  margin: 3%;
+}
+
+/deep/ .mat-figure {
+  -webkit-margin-start: 0 !important;
+  -webkit-margin-end: 0 !important;
+}
+
 .console-output-card {
   width: 90%;
 }
