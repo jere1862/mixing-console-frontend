@@ -9,24 +9,24 @@ describe('NodeServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        {provide: ConnectionBackend, useClass: MockBackend},
-        {provide: RequestOptions, useClass: BaseRequestOptions},
+        { provide: ConnectionBackend, useClass: MockBackend },
+        { provide: RequestOptions, useClass: BaseRequestOptions },
         Http,
         AudioNodeService
       ]
     });
   });
 
-  it('should be created', inject([AudioNodeService, ConnectionBackend], (service: AudioNodeService, backend: MockBackend) => {
-    expect(service).toBeTruthy();
+  it('should be created', inject([AudioNodeService, ConnectionBackend], (audioNodeService: AudioNodeService, backend: MockBackend) => {
+    expect(audioNodeService).toBeTruthy();
   }));
-  
-  it('should fetch nodes', fakeAsync(inject([AudioNodeService, ConnectionBackend], (service: AudioNodeService, backend: MockBackend) => {
+
+  it('should fetch nodes', fakeAsync(inject([AudioNodeService, ConnectionBackend], (audioNodeService: AudioNodeService, backend: MockBackend) => {
     let result: Array<AudioNode>;
     backend.connections.subscribe((connection: any) => this.lastConnection = connection);
-    service.getNodes().then( (nodes: Array<AudioNode>) => result = nodes );
+    audioNodeService.getNodes().then((nodes: Array<AudioNode>) => result = nodes);
     this.lastConnection.mockRespond(new Response(new ResponseOptions({
-      body: JSON.stringify({data: [mockNode]}),
+      body: JSON.stringify({ data: [mockNode] }),
     })));
 
     tick();

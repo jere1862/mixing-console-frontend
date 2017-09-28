@@ -13,7 +13,7 @@ describe('ConsoleSliderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConsoleSliderComponent ],
+      declarations: [ConsoleSliderComponent],
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
@@ -23,7 +23,7 @@ describe('ConsoleSliderComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

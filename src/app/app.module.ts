@@ -18,7 +18,7 @@ import { AudioNodeService } from './node/audio-node.service';
 
 // Imports for loading & configuring the in-memory web api
 import { HttpInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryNodeService }  from './node/in-memory-node.service';
+import { InMemoryNodeService } from './node/in-memory-node.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);

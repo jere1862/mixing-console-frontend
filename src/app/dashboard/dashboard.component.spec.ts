@@ -16,7 +16,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 const INITIAL_CURRENT_LANG: string = 'fr';
 const OTHER_LANGUAGE: string = 'en';
 
-@Pipe({name: 'translate'})
+@Pipe({ name: 'translate' })
 class MockPipe implements PipeTransform {
   transform(value: string): string {
     return value;
@@ -40,7 +40,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, MapComponent, MockPipe ],
+      declarations: [DashboardComponent, MapComponent, MockPipe],
       providers: [
         {
           provide: TranslateService,
@@ -58,7 +58,7 @@ describe('DashboardComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -86,8 +86,8 @@ describe('DashboardComponent', () => {
       expect(nodes[0]).toEqual(mockNode);
     });
   }));
-  
-  it ('should set next language', () => {
+
+  it('should set next language', () => {
     expect(component.nextLanguage).toBe(OTHER_LANGUAGE);
     component.changeLanguage();
     expect(component.nextLanguage).toBe(INITIAL_CURRENT_LANG);

@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private audioNodeService: AudioNodeService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.language = this.translateService.currentLang;

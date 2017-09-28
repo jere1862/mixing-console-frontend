@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 export class AudioNodeService {
   private nodesUrl = 'api/nodes';
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
 
   // Get node data
   getNodes(): Promise<Array<AudioNode>> {
