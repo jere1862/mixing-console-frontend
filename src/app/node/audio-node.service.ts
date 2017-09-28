@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { SoundNode } from './sound-node';
+import { AudioNode } from '../models/audio-node';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class NodeService {
+export class AudioNodeService {
   private nodesUrl = 'api/nodes';
-  private nodes: SoundNode;
+  private nodes: AudioNode;
 
   constructor(private http: Http) {}
 
   // Get nodes data
-  getNodes(): Observable<SoundNode[]> {
+  getNodes(): Observable<AudioNode[]> {
     return this.http.get(this.nodesUrl)
       .map(this.extractData)
       .catch(this.handleError);

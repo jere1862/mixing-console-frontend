@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Http } from '@angular/http';
-import { NodeService } from '../node/node.service';
-import { SoundNode } from '../node/sound-node';
+import { AudioNodeService } from '../node/audio-node.service';
+import { AudioNode } from '../models/audio-node';
 import 'rxjs/add/operator/retry';
 
 @Component({
@@ -13,7 +13,7 @@ import 'rxjs/add/operator/retry';
 
 export class DashboardComponent implements OnInit {
   private _language: string;
-  private _nodes: SoundNode[];
+  private _audioNodes: AudioNode[];
 
   get language(): string {
     return this._language;
@@ -23,16 +23,24 @@ export class DashboardComponent implements OnInit {
     this._language = language;
   }
 
+  get audioNodes(): AudioNode[] {
+    return this._audioNodes;
+  }
+
+  set audioNodes(audioNodes: AudioNode[]) {
+    this._audioNodes = audioNodes;
+  }
+
   constructor(
     private translateService: TranslateService,
     private http: Http,
-    private service: NodeService
+    private service: AudioNodeService
   ) {}
 
   ngOnInit(): void {
     this.language = this.translateService.currentLang;
     this.service.getNodes().subscribe(results => {
-      this._nodes = results;
+      this.audioNodes = results;
     });
   }
 
