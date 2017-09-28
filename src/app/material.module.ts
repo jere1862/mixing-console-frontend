@@ -9,7 +9,7 @@ import {
   MatTabsModule,
   MatCardModule,
   MatCheckboxModule
- } from '@angular/material';
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -35,4 +35,4 @@ import {
     MatCheckboxModule
   ]
 })
-export class MaterialModule {}
+export class MaterialModule { }

@@ -10,7 +10,7 @@ describe('MapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapComponent ],
+      declarations: [MapComponent],
       imports: [
         MaterialModule,
         AgmCoreModule.forRoot({})
@@ -19,7 +19,7 @@ describe('MapComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

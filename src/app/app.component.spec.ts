@@ -14,7 +14,7 @@ describe('AppComponent', () => {
       providers: [
         {
           provide: TranslateService,
-          useClass: class{
+          useClass: class {
             use: jasmine.Spy = jasmine.createSpy('use');
             setDefaultLang: jasmine.Spy = jasmine.createSpy('setDefaultLang');
           }

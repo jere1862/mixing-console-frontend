@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MapComponent } from '../map/map.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AudioNodeService } from '../node/audio-node.service';
+import { AudioNode } from '../models/audio-node';
+import { mockNode } from '../mocks/audio-node-mock';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -14,7 +16,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 const INITIAL_CURRENT_LANG: string = 'fr';
 const OTHER_LANGUAGE: string = 'en';
 
-@Pipe({name: 'translate'})
+@Pipe({ name: 'translate' })
 class MockPipe implements PipeTransform {
   transform(value: string): string {
     return value;
@@ -26,17 +28,27 @@ class TranslateServiceStub {
   use: jasmine.Spy = jasmine.createSpy('use');
 }
 
+class AudioNodeServiceStub {
+  getNodes = () => new Promise((resolve, reject) => {
+    resolve(Array.of(mockNode));
+  });
+}
+
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, MapComponent, MockPipe ],
+      declarations: [DashboardComponent, MapComponent, MockPipe],
       providers: [
         {
           provide: TranslateService,
           useClass: TranslateServiceStub
+        },
+        {
+          provide: AudioNodeService,
+          useClass: AudioNodeServiceStub
         },
         {
           provide: HttpClient
@@ -46,7 +58,7 @@ describe('DashboardComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -68,7 +80,14 @@ describe('DashboardComponent', () => {
     expect(translateServiceStub.use).toHaveBeenCalledWith(OTHER_LANGUAGE);
   });
 
-  it ('should set next language', () => {
+  it('should call the node service', async(() => {
+    component.audioNodes.subscribe(nodes => {
+      expect(nodes.length).toBe(1);
+      expect(nodes[0]).toEqual(mockNode);
+    });
+  }));
+
+  it('should set next language', () => {
     expect(component.nextLanguage).toBe(OTHER_LANGUAGE);
     component.changeLanguage();
     expect(component.nextLanguage).toBe(INITIAL_CURRENT_LANG);

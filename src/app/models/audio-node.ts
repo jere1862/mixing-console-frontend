@@ -1,4 +1,5 @@
 export class AudioNode {
+  id: number;
   name: string;
   volume: number;
   low: number;
@@ -9,6 +10,7 @@ export class AudioNode {
   isFix: boolean;
 
   constructor() {
+    this.id = 0;
     this.name = '';
     this.volume = 0;
     this.low = 0;
