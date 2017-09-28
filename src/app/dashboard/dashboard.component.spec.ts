@@ -86,4 +86,10 @@ describe('DashboardComponent', () => {
       expect(nodes[0]).toEqual(mockNode);
     });
   }));
+  
+  it ('should set next language', () => {
+    expect(component.nextLanguage).toBe(OTHER_LANGUAGE);
+    component.changeLanguage();
+    expect(component.nextLanguage).toBe(INITIAL_CURRENT_LANG);
+  });
 });

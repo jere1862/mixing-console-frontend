@@ -15,15 +15,8 @@ import 'rxjs/add/operator/retry';
 
 export class DashboardComponent implements OnInit {
   private _language: string;
+  private _nextLanguage: string;
   private _audioNodes: Observable<Array<AudioNode>>;
-
-  get language(): string {
-    return this._language;
-  }
-
-  set language(language: string) {
-    this._language = language;
-  }
 
   get audioNodes(): Observable<Array<AudioNode>> {
     return this._audioNodes;
@@ -41,6 +34,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.language = this.translateService.currentLang;
     this.audioNodes = Observable.fromPromise<Array<AudioNode>>(this.audioNodeService.getNodes());
+    this.setNextLanguage();
   }
 
   changeLanguage(): void {
@@ -51,6 +45,32 @@ export class DashboardComponent implements OnInit {
     }
 
     this.translateService.use(this.language);
+
+    this.setNextLanguage();
+  }
+
+  setNextLanguage(): void {
+    if (this.language === 'fr') {
+      this.nextLanguage = 'en';
+    } else {
+      this.nextLanguage = 'fr';
+    }
+  }
+
+  get language(): string {
+    return this._language;
+  }
+
+  set language(language: string) {
+    this._language = language;
+  }
+
+  get nextLanguage(): string {
+    return this._nextLanguage;
+  }
+
+  set nextLanguage(language: string) {
+    this._nextLanguage = language;
   }
 
 }

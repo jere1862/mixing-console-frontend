@@ -11,13 +11,6 @@ export class AudioNodeService {
 
   constructor(private http: Http) {}
 
-  // Get nodes data
-  // getNodes(): Observable<AudioNode[]> {
-  //   return this.http.get(this.nodesUrl)
-  //     .map(this.extractData)
-  //     .catch(this.handleError);
-  // }
-
   // Get node data
   getNodes(): Promise<Array<AudioNode>> {
     return this.http.get(this.nodesUrl)
