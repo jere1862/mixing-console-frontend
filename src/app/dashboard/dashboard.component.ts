@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Http } from '@angular/http';
 import { AudioNodeService } from '../node/audio-node.service';
 import { AudioNode } from '../models/audio-node';
+import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/retry';
 
 @Component({
@@ -13,7 +15,7 @@ import 'rxjs/add/operator/retry';
 
 export class DashboardComponent implements OnInit {
   private _language: string;
-  private _audioNodes: AudioNode[];
+  private _audioNodes: Observable<Array<AudioNode>>;
 
   get language(): string {
     return this._language;
@@ -23,25 +25,22 @@ export class DashboardComponent implements OnInit {
     this._language = language;
   }
 
-  get audioNodes(): AudioNode[] {
+  get audioNodes(): Observable<Array<AudioNode>> {
     return this._audioNodes;
   }
 
-  set audioNodes(audioNodes: AudioNode[]) {
+  set audioNodes(audioNodes: Observable<Array<AudioNode>>) {
     this._audioNodes = audioNodes;
   }
 
   constructor(
     private translateService: TranslateService,
-    private http: Http,
-    private service: AudioNodeService
+    private audioNodeService: AudioNodeService
   ) {}
 
   ngOnInit(): void {
     this.language = this.translateService.currentLang;
-    this.service.getNodes().subscribe(results => {
-      this.audioNodes = results;
-    });
+    this.audioNodes = Observable.fromPromise<Array<AudioNode>>(this.audioNodeService.getNodes());
   }
 
   changeLanguage(): void {

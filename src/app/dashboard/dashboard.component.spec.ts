@@ -1,14 +1,13 @@
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import { Pipe, PipeTransform, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { HttpModule } from '@angular/http'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MapComponent } from '../map/map.component';
 import { AudioNodeService } from '../node/audio-node.service';
 import { AudioNode } from '../models/audio-node';
-import { Observable } from 'rxjs/Observable';
+import { mockNode } from '../mocks/audio-node-mock';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -16,18 +15,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 
 const INITIAL_CURRENT_LANG: string = 'fr';
 const OTHER_LANGUAGE: string = 'en';
-const mockNode: AudioNode = 
-  {
-    id: 1,
-    name: "left mic",
-    volume: 95,
-    low: 12,
-    med: 40,
-    high: 50,
-    latitude: 45.378008,
-    longitude: -71.9269062,
-    isFix: false
-  };
 
 @Pipe({name: 'translate'})
 class MockPipe implements PipeTransform {
@@ -42,7 +29,9 @@ class TranslateServiceStub {
 }
 
 class AudioNodeServiceStub {
-  getNodes = () => Observable.of([mockNode]);
+  getNodes = () => new Promise((resolve, reject) => {
+    resolve(Array.of(mockNode));
+  });
 }
 
 describe('DashboardComponent', () => {
@@ -51,9 +40,6 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpModule
-      ],
       declarations: [ DashboardComponent, MapComponent, MockPipe ],
       providers: [
         {
@@ -63,6 +49,9 @@ describe('DashboardComponent', () => {
         {
           provide: AudioNodeService,
           useClass: AudioNodeServiceStub
+        },
+        {
+          provide: HttpClient
         }
       ],
       schemas: [
@@ -90,8 +79,11 @@ describe('DashboardComponent', () => {
     const translateServiceStub: TranslateService = fixture.debugElement.injector.get(TranslateService);
     expect(translateServiceStub.use).toHaveBeenCalledWith(OTHER_LANGUAGE);
   });
-  it('should call the node service', () => {
-    expect(component.audioNodes.length).toBe(1);
-    expect(component.audioNodes[0]).toBe(mockNode);
-  });
+
+  it('should call the node service', async(() => {
+    component.audioNodes.subscribe(nodes => {
+      expect(nodes.length).toBe(1);
+      expect(nodes[0]).toEqual(mockNode);
+    });
+  }));
 });

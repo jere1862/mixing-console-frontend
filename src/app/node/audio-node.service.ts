@@ -8,25 +8,27 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class AudioNodeService {
   private nodesUrl = 'api/nodes';
-  private nodes: AudioNode;
 
   constructor(private http: Http) {}
 
   // Get nodes data
-  getNodes(): Observable<AudioNode[]> {
+  // getNodes(): Observable<AudioNode[]> {
+  //   return this.http.get(this.nodesUrl)
+  //     .map(this.extractData)
+  //     .catch(this.handleError);
+  // }
+
+  // Get node data
+  getNodes(): Promise<Array<AudioNode>> {
     return this.http.get(this.nodesUrl)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-  
-  private extractData(res: Response) {
-    const body = res.json();
-    return (body && body.data) || { };
+      .toPromise()
+      .then(response => response.json().data)
+      .catch(e => this.handleError(e));
   }
 
-  private handleError(error: any){
-    console.error(error);
-    return Observable.throw(error);
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
 
 }
