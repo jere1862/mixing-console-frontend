@@ -1,7 +1,9 @@
 <md-card class="map-holder mat-elevation-z6">
   <md-card-content>
-    <agm-map [latitude]="lat" [longitude]="lng">
-      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-map [latitude]="fixNode.latitude" [longitude]="fixNode.longitude" [zoom]="17">
+      <span *ngFor="let audioNode of audioNodes">
+        <agm-marker [latitude]="audioNode.latitude" [longitude]="audioNode.longitude"></agm-marker>
+      </span>
     </agm-map>
   </md-card-content>
 </md-card>

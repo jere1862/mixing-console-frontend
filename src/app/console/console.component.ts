@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AudioNode } from '../models/audio-node';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -9,8 +9,11 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./console.component.css']
 })
 
-export class ConsoleComponent implements OnInit {
-  mobileNodes: Array<AudioNode>;
+export class ConsoleComponent implements OnInit, OnChanges {
+  @Input()
+  audioNodes: Array<AudioNode>;
+
+  mobileNodes: Array<AudioNode> = Array<AudioNode>();
   fixNode: AudioNode;
   autoAdjust: boolean = false;
   numberOfMobileNodes: number;
@@ -18,33 +21,23 @@ export class ConsoleComponent implements OnInit {
   constructor(translateService: TranslateService) { }
 
   ngOnInit(): void {
-    this.initializeMobileNodes();
-    this.initializeFixNode();
+
   }
 
-  initializeMobileNodes(): void {
-    this.numberOfMobileNodes = 6;
-    this.mobileNodes = new Array<AudioNode>();
-
-    for (let i = 0; i < this.numberOfMobileNodes; ++i) {
-      const mobileNode: AudioNode = new AudioNode();
-      mobileNode.name = 'Noeud mobile ' + i;
-      mobileNode.volume = Math.floor(Math.random() * 257);
-      mobileNode.high = Math.floor(Math.random() * 257);
-      mobileNode.med = Math.floor(Math.random() * 257);
-      mobileNode.low = Math.floor(Math.random() * 257);
-
-      this.mobileNodes.push(mobileNode);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['audioNodes'] && this.audioNodes !== undefined) {
+      this.initializeAudioNodes();
     }
   }
 
-  initializeFixNode(): void {
-    this.fixNode = new AudioNode;
-    this.fixNode.volume = Math.floor(Math.random() * 257);
-    this.fixNode.high = Math.floor(Math.random() * 257);
-    this.fixNode.med = Math.floor(Math.random() * 257);
-    this.fixNode.low = Math.floor(Math.random() * 257);
-    this.fixNode.isFix = true;
+  initializeAudioNodes(): void {
+    this.audioNodes.forEach(audioNode => {
+      if (audioNode.isFix) {
+        this.fixNode = audioNode;
+      } else {
+        this.mobileNodes.push(audioNode);
+      }
+    });
   }
 
 }

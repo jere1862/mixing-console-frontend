@@ -31,7 +31,7 @@ class TranslateServiceStub {
 class AudioNodeServiceStub {
   getNodes = () => new Promise((resolve, reject) => {
     resolve(Array.of(mockNode));
-  });
+  })
 }
 
 describe('DashboardComponent', () => {

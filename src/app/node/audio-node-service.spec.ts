@@ -17,11 +17,12 @@ describe('NodeServiceService', () => {
     });
   });
 
-  it('should be created', inject([AudioNodeService, ConnectionBackend], (audioNodeService: AudioNodeService, backend: MockBackend) => {
+  it ('should be created', inject([AudioNodeService, ConnectionBackend], (audioNodeService: AudioNodeService, backend: MockBackend) => {
     expect(audioNodeService).toBeTruthy();
   }));
 
-  it('should fetch nodes', fakeAsync(inject([AudioNodeService, ConnectionBackend], (audioNodeService: AudioNodeService, backend: MockBackend) => {
+  it ('should fetch nodes', fakeAsync(inject([AudioNodeService, ConnectionBackend],
+    (audioNodeService: AudioNodeService, backend: MockBackend) => {
     let result: Array<AudioNode>;
     backend.connections.subscribe((connection: any) => this.lastConnection = connection);
     audioNodeService.getNodes().then((nodes: Array<AudioNode>) => result = nodes);

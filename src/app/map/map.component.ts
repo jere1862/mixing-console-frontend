@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AudioNode } from '../models/audio-node';
 
 @Component({
   selector: 'app-map',
@@ -6,13 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  lat: number;
-  lng: number;
+  @Input()
+  audioNodes: Array<AudioNode>;
+
+  @Input()
+  fixNode: AudioNode;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.lat = 12.0;
-    this.lng = 12.0;
+
   }
 }
