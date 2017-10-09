@@ -14,11 +14,11 @@ import { ConsoleComponent } from './console/console.component';
 import { ConsoleSliderComponent } from './console-slider/console-slider.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
-import { AudioNodeService } from './node/audio-node.service';
+import { AudioNodeService } from './services/audio-node.service';
 
 // Imports for loading & configuring the in-memory web api
 import { HttpInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryNodeService } from './node/in-memory-node.service';
+import { InMemoryNodeService } from './services/in-memory-node.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);

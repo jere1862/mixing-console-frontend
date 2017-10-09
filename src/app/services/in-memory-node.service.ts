@@ -8,7 +8,7 @@ export class InMemoryNodeService implements InMemoryDbService {
     let nodes: Array<AudioNode> = [
       {
         id: 1,
-        name: 'left mic',
+        name: 'mic 1',
         volume: 95,
         low: 12,
         med: 40,
@@ -19,7 +19,7 @@ export class InMemoryNodeService implements InMemoryDbService {
       },
       {
         id: 2,
-        name: 'right mic',
+        name: 'mic 2',
         volume: 95,
         low: 60,
         med: 20,
@@ -30,7 +30,7 @@ export class InMemoryNodeService implements InMemoryDbService {
       },
       {
         id: 3,
-        name: 'back mic',
+        name: 'mic 3',
         volume: 95,
         low: 40,
         med: 40,

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MdTabChangeEvent } from '@angular/material';
 import { AudioNode } from '../models/audio-node';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -16,12 +17,12 @@ export class ConsoleComponent implements OnInit, OnChanges {
   mobileNodes: Array<AudioNode> = Array<AudioNode>();
   fixNode: AudioNode;
   autoAdjust: boolean = false;
-  numberOfMobileNodes: number;
+  selectedTabIndex: number;
 
   constructor(translateService: TranslateService) { }
 
   ngOnInit(): void {
-
+    this.selectedTabIndex = 0;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -40,4 +41,11 @@ export class ConsoleComponent implements OnInit, OnChanges {
     });
   }
 
+  onMarkerClicked(selectedMobileNodeIndex: number): void {
+    this.selectedTabIndex = selectedMobileNodeIndex;
+  }
+
+  onSelectedTabChanged(tabChangeEvent: MdTabChangeEvent): void {
+    this.selectedTabIndex = tabChangeEvent.index;
+  }
 }
