@@ -5,7 +5,7 @@ import { TranslateService, TranslateModule, TranslateLoader } from '@ngx-transla
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MapComponent } from '../map/map.component';
-import { AudioNodeService } from '../node/audio-node.service';
+import { AudioNodeService } from '../services/audio-node.service';
 import { AudioNode } from '../models/audio-node';
 import { mockNode } from '../mocks/audio-node-mock';
 
