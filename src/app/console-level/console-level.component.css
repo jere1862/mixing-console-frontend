@@ -3,6 +3,7 @@
     margin-right: 5%;
     margin-top: 50px;
 }
-::ng-deep .mat-slider-disabled .mat-slider-thumb,.mat-slider-disabled .mat-slider-track-background,.mat-slider-disabled .mat-slider-track-fill{
+
+::ng-deep .mat-slider-disabled .mat-slider-thumb {
     background-color:#ff4081;
 }
