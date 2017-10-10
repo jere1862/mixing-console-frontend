@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ConsoleLevelComponent } from './console-level.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import 'hammerjs';
+
 
 describe('ConsoleLevelComponent', () => {
   let component: ConsoleLevelComponent;
@@ -8,7 +10,10 @@ describe('ConsoleLevelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConsoleLevelComponent ]
+      declarations: [ ConsoleLevelComponent ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ]
     })
     .compileComponents();
   }));
