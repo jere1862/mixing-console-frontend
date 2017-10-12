@@ -28,7 +28,7 @@ export class InMemoryNodeService implements InMemoryDbService {
         latitude: 45.378478,
         longitude: -71.9277089,
         isFix: false,
-        markerOpacity: 1
+        markerOpacity: 0.6
       },
       {
         id: 3,
@@ -40,7 +40,7 @@ export class InMemoryNodeService implements InMemoryDbService {
         latitude: 45.378248,
         longitude: -71.9280432,
         isFix: false,
-        markerOpacity: 1
+        markerOpacity: 0.6
       },
       {
         id: 4,
@@ -52,7 +52,7 @@ export class InMemoryNodeService implements InMemoryDbService {
         latitude: 45.378248,
         longitude: -71.927424,
         isFix: true,
-        markerOpacity: 1
+        markerOpacity: 0.6
       },
     ];
     return { nodes };

@@ -10,5 +10,5 @@ export const mockNode: AudioNode = {
   latitude: 45.378008,
   longitude: -71.9269062,
   isFix: false,
-  markerOpacity: 1
+  markerOpacity: 0.6
 };

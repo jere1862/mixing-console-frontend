@@ -20,6 +20,6 @@ export class AudioNode {
     this.latitude = 0;
     this.longitude = 0;
     this.isFix = false;
-    this.markerOpacity = 1;
+    this.markerOpacity = 0.6;
   }
 }
