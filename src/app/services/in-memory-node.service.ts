@@ -15,7 +15,8 @@ export class InMemoryNodeService implements InMemoryDbService {
         high: 50,
         latitude: 45.378008,
         longitude: -71.9269062,
-        isFix: false
+        isFix: false,
+        markerOpacity: 1
       },
       {
         id: 2,
@@ -26,7 +27,8 @@ export class InMemoryNodeService implements InMemoryDbService {
         high: 70,
         latitude: 45.378478,
         longitude: -71.9277089,
-        isFix: false
+        isFix: false,
+        markerOpacity: 1
       },
       {
         id: 3,
@@ -37,7 +39,8 @@ export class InMemoryNodeService implements InMemoryDbService {
         high: 10,
         latitude: 45.378248,
         longitude: -71.9280432,
-        isFix: false
+        isFix: false,
+        markerOpacity: 1
       },
       {
         id: 4,
@@ -48,7 +51,8 @@ export class InMemoryNodeService implements InMemoryDbService {
         high: 30,
         latitude: 45.378248,
         longitude: -71.927424,
-        isFix: true
+        isFix: true,
+        markerOpacity: 1
       },
     ];
     return { nodes };
