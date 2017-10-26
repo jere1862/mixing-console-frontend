@@ -7,11 +7,10 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AudioNodeService {
-  private nodesUrl = 'api/nodes';
+  private nodesUrl: string = 'api/nodes';
 
   constructor(private http: Http) { }
 
-  // Get node data
   getNodes(): Promise<Array<AudioNode>> {
     return this.http.get(this.nodesUrl)
       .toPromise()

@@ -8,6 +8,7 @@ export class AudioNode {
   latitude: number;
   longitude: number;
   isFix: boolean;
+  markerOpacity: number;
 
   constructor() {
     this.id = 0;
@@ -19,5 +20,6 @@ export class AudioNode {
     this.latitude = 0;
     this.longitude = 0;
     this.isFix = false;
+    this.markerOpacity = 0.6;
   }
 }
