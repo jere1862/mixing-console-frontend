@@ -29,7 +29,6 @@ export class MapComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedMobileNodeIndex']) {
-      console.log('changed');
       this.setMarkersOpacity();
     }
   }

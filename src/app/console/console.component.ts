@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { MdTabChangeEvent } from '@angular/material';
+import { AudioNodeService } from '../services/audio-node.service';
+import { MdTabChangeEvent, MdSliderChange } from '@angular/material';
 import { AudioNode } from '../models/audio-node';
+import { SliderType } from '../console-slider/console-slider.component';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -19,7 +21,7 @@ export class ConsoleComponent implements OnInit, OnChanges {
   autoAdjust: boolean = false;
   selectedTabIndex: number;
 
-  constructor(translateService: TranslateService) { }
+  constructor(private audioNodeService: AudioNodeService) { }
 
   ngOnInit(): void {
     this.selectedTabIndex = 0;
@@ -47,5 +49,10 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   onSelectedTabChanged(tabChangeEvent: MdTabChangeEvent): void {
     this.selectedTabIndex = tabChangeEvent.index;
+  }
+
+  onChange(mdSliderChange: MdSliderChange, node: AudioNode, sliderTypeString: string): void {
+    this.audioNodeService.notifyChange(node, SliderType[sliderTypeString])
+                         .then(response => {console.log(response); });
   }
 }
