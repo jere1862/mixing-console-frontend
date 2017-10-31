@@ -6,6 +6,7 @@ import { AudioNode } from '../models/audio-node';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/retry';
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,16 +17,7 @@ import 'rxjs/add/operator/retry';
 export class DashboardComponent implements OnInit {
   private _language: string;
   private _nextLanguage: string;
-  private _audioNodes: Observable<Array<AudioNode>>;
   private audioNodesObservableResponse: Array<AudioNode>;
-
-  get audioNodes(): Observable<Array<AudioNode>> {
-    return this._audioNodes;
-  }
-
-  set audioNodes(audioNodes: Observable<Array<AudioNode>>) {
-    this._audioNodes = audioNodes;
-  }
 
   constructor(
     private translateService: TranslateService,
@@ -33,12 +25,12 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.language = this.translateService.currentLang;
-    this.audioNodes = Observable.fromPromise<Array<AudioNode>>(this.audioNodeService.getNodes());
+    Observable.fromPromise<Array<AudioNode>>(this.audioNodeService.getNodes())
+              .subscribe((res) => this.audioNodesObservableResponse = res);
 
-    this.audioNodes.subscribe(res => {
-      this.audioNodesObservableResponse = res;
-    });
+    Observable.interval(1000)
+                .switchMap(() => this.audioNodeService.getNodes())
+                .subscribe((res) => this.audioNodesObservableResponse = res);
 
     this.setNextLanguage();
   }

@@ -34,13 +34,14 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   initializeAudioNodes(): void {
-    this.audioNodes.forEach(audioNode => {
-      if (audioNode.isFix) {
-        this.fixNode = audioNode;
-      } else {
-        this.mobileNodes.push(audioNode);
-      }
-    });
+    if (this.mobileNodes.length !== 0 && this.mobileNodes.length === this.audioNodes.length) {
+      // TODO: Separate arrays to avoid iterating twice
+      // TODO: Handle adding new nodes in a different way
+      this.mobileNodes.forEach(node => node = this.audioNodes.find(_node => _node.id === node.id));
+    }else {
+      this.mobileNodes = this.audioNodes.filter(node => !node.isFix);
+    }
+    this.fixNode = this.audioNodes.find(node => node.isFix);
   }
 
   onMarkerClicked(selectedMobileNodeIndex: number): void {
@@ -52,7 +53,6 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   onChange(mdSliderChange: MdSliderChange, node: AudioNode, sliderTypeString: string): void {
-    this.audioNodeService.notifyChange(node, SliderType[sliderTypeString])
-                         .then(response => {console.log(response); });
+    this.audioNodeService.notifyChange(node, SliderType[sliderTypeString]);
   }
 }
