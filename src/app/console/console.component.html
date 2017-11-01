@@ -8,13 +8,13 @@
         <mat-grid-list cols="3" rowHeight="1:2">
           <mat-grid-tile [colspan]="1">
             <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
-            <app-console-slider [value]="fixNode.volume" (sliderChange)="onSliderChange(fixNode, 'volume')"></app-console-slider>
+            <app-console-slider [value]="fixNode.volume" (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1">
             <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
-            <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'high')"></app-console-slider>
-            <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'med')"></app-console-slider>
-            <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'low')"></app-console-slider>
+            <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'high', $event)"></app-console-slider>
+            <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'med', $event)"></app-console-slider>
+            <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'low', $event)"></app-console-slider>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1">
             <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
@@ -42,13 +42,13 @@
               <mat-grid-list cols="3" rowHeight="1:2">
                 <mat-grid-tile [colspan]="1">
                   <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
-                  <app-console-slider [value]="mobileNode.volume" (sliderChange)="onSliderChange(mobileNode, 'volume')"></app-console-slider>
+                  <app-console-slider [value]="mobileNode.volume" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="1">
                   <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
-                  <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'high')"></app-console-slider>
-                  <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'med')"></app-console-slider>
-                  <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'low')"></app-console-slider>
+                  <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'high', $event)"></app-console-slider>
+                  <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'med', $event)"></app-console-slider>
+                  <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'low', $event)"></app-console-slider>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="1">
                     <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
