@@ -8,7 +8,8 @@ import {
   MatGridListModule,
   MatTabsModule,
   MatCardModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -21,7 +22,8 @@ import {
     MatGridListModule,
     MatTabsModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressBarModule
   ],
   exports: [
     MatButtonModule,
@@ -32,7 +34,8 @@ import {
     MatGridListModule,
     MatTabsModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule { }

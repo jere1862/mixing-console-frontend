@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AudioNodeService } from '../services/audio-node.service';
-import { MdTabChangeEvent, MdSliderChange } from '@angular/material';
+import { MatTabChangeEvent, MatSliderChange } from '@angular/material';
 import { AudioNode } from '../models/audio-node';
 import { SliderType } from '../console-slider/console-slider.component';
 
@@ -46,7 +46,7 @@ export class ConsoleComponent implements OnInit, OnChanges {
     this.selectedTabIndex = selectedMobileNodeIndex;
   }
 
-  onSelectedTabChanged(tabChangeEvent: MdTabChangeEvent): void {
+  onSelectedTabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedTabIndex = tabChangeEvent.index;
   }
 

@@ -15,6 +15,7 @@ import { ConsoleSliderComponent } from './console-slider/console-slider.componen
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
 import { AudioNodeService } from './services/audio-node.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Imports for loading & configuring the in-memory web api
 import { HttpInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -52,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps: [HttpClient]
       }
     }),
-    FormsModule
+    FormsModule,
+    FlexLayoutModule
   ],
   providers: [AudioNodeService],
   bootstrap: [AppComponent]

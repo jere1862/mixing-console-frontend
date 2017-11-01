@@ -1,10 +1,10 @@
-<md-card class="map-holder mat-elevation-z6">
-  <md-card-content>
+<mat-card class="map-holder mat-elevation-z6">
+  <mat-card-content>
     <agm-map [latitude]="fixNode.latitude" [longitude]="fixNode.longitude" [zoom]="17">
       <span *ngFor="let mobileNode of mobileNodes; let i = index">
         <agm-marker [opacity]="mobileNode.markerOpacity" [latitude]="mobileNode.latitude" [longitude]="mobileNode.longitude" iconUrl="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|e534b8" (markerClick)="emitSelectedMobileNodeIndex(i)"></agm-marker>
       </span>
       <agm-marker [latitude]="fixNode.latitude" [longitude]="fixNode.longitude" iconUrl="http://chart.apis.google.com/chart?chst=d_map_xpin_letter&chld=pin_star|%E2%80%A2|3443e5"></agm-marker>
     </agm-map>
-  </md-card-content>
-</md-card>
+  </mat-card-content>
+</mat-card>
