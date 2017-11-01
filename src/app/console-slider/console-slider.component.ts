@@ -19,16 +19,17 @@ export enum SliderType {
 export class ConsoleSliderComponent implements OnInit {
   @Input()
   value: number;
+
   @Output()
-  change: EventEmitter<MdSliderChange> = new EventEmitter();
+  sliderChange: EventEmitter<MdSliderChange> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onChange(mdSliderChange: MdSliderChange): void {
-    this.change.emit(mdSliderChange);
+  onSliderChange(mdSliderChange: MdSliderChange): void {
+    this.sliderChange.emit(mdSliderChange);
   }
 
 }

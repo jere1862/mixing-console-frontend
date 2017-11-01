@@ -4,8 +4,6 @@ import { MdTabChangeEvent, MdSliderChange } from '@angular/material';
 import { AudioNode } from '../models/audio-node';
 import { SliderType } from '../console-slider/console-slider.component';
 
-import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-console',
   templateUrl: './console.component.html',
@@ -34,9 +32,11 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   initializeAudioNodes(): void {
-    if (this.mobileNodes.length !== 0 && this.mobileNodes.length === this.audioNodes.length - 1) {
-      this.mobileNodes.forEach(node => node = this.audioNodes.find(_node => _node.id === node.id));
-    }else {
+    if (this.mobileNodes.length) {
+      this.mobileNodes.forEach(node => {
+        node = this.audioNodes.find(_node => _node.id === node.id);
+      });
+    } else {
       this.mobileNodes = this.audioNodes.filter(node => !node.isFix);
     }
     this.fixNode = this.audioNodes.find(node => node.isFix);
@@ -50,7 +50,10 @@ export class ConsoleComponent implements OnInit, OnChanges {
     this.selectedTabIndex = tabChangeEvent.index;
   }
 
-  onChange(mdSliderChange: MdSliderChange, node: AudioNode, sliderTypeString: string): void {
+  onSliderChange(node: AudioNode, sliderTypeString: string): void {
+    console.log(node);
+    console.log(sliderTypeString);
+    console.log(SliderType[sliderTypeString]);
     this.audioNodeService.notifyChange(node, SliderType[sliderTypeString]);
   }
 }

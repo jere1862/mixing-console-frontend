@@ -11,7 +11,6 @@ export class AudioNodeService {
   private nodesUrl: string = 'api/nodes';
   private headers: Headers =  new Headers({'Content-Type': 'application/json'});
 
-
   constructor(private http: Http) { }
 
   getNodes(): Promise<Array<AudioNode>> {
