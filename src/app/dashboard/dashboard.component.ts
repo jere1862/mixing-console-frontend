@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
     this._audioNodesObservableResponse = audioNodes;
   }
 
-
   constructor(
     private translateService: TranslateService,
     private audioNodeService: AudioNodeService

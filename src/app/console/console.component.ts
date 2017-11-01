@@ -50,7 +50,7 @@ export class ConsoleComponent implements OnInit, OnChanges {
     this.selectedTabIndex = tabChangeEvent.index;
   }
 
-  onSliderChange(node: AudioNode, sliderTypeString: string): void {
-    this.audioNodeService.notifyChange(node, SliderType[sliderTypeString]);
+  onSliderChange(node: AudioNode, sliderTypeString: string, mdSliderChange: MdSliderChange): void {
+    this.audioNodeService.notifyChange(node.id, SliderType[sliderTypeString], mdSliderChange.value);
   }
 }
