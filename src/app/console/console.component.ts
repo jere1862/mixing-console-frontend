@@ -15,7 +15,6 @@ import 'rxjs/add/operator/startWith';
   templateUrl: './console.component.html',
   styleUrls: ['./console.component.css']
 })
-
 export class ConsoleComponent implements OnInit, OnChanges {
   @Input()
   audioNodes: Array<AudioNode>;
@@ -25,6 +24,10 @@ export class ConsoleComponent implements OnInit, OnChanges {
   autoAdjust: boolean = false;
   selectedTabIndex: number;
   cols: Observable<number>;
+
+  private readonly XL_NUMBER_OF_COLUMNS: number = 3;
+  private readonly LG_NUMBER_OF_COLUMNS: number = 2;
+  private readonly MD_TO_SM_NUMBER_OF_COLUMNS: number = 1;
 
   constructor(private audioNodeService: AudioNodeService, private observableMedia: ObservableMedia) { }
 
@@ -64,18 +67,21 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   makeCardsResponsive(): void {
     const grid = new Map([
-      ['xs', 1],
-      ['sm', 1],
-      ['md', 1],
-      ['lg', 2],
-      ['xl', 3]
+      ['xs', this.MD_TO_SM_NUMBER_OF_COLUMNS],
+      ['sm', this.MD_TO_SM_NUMBER_OF_COLUMNS],
+      ['md', this.MD_TO_SM_NUMBER_OF_COLUMNS],
+      ['lg', this.LG_NUMBER_OF_COLUMNS],
+      ['xl', this.XL_NUMBER_OF_COLUMNS]
     ]);
+
     let start: number;
+
     grid.forEach((cols, mqAlias) => {
       if (this.observableMedia.isActive(mqAlias)) {
         start = cols;
       }
     });
+
     this.cols = this.observableMedia.asObservable()
       .map(change => {
         return grid.get(change.mqAlias);
