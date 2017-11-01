@@ -20,10 +20,10 @@ export class AudioNodeService {
       .catch(e => this.handleError(e));
   }
 
-  notifyChange(node: AudioNode, sliderType: SliderType): Promise<number> {
-    const url = `/notify?id=${node.id}`;
+  notifyChange(nodeId: Number, sliderType: SliderType, value: Number): Promise<number> {
+    const url = `/notify?id=${nodeId}`;
     return this.http
-               .post(this.nodesUrl + url, {node: node, sliderType: sliderType})
+               .post(this.nodesUrl + url, {sliderType: sliderType, value: value})
                .toPromise()
                .then(response => response.status)
                .catch(e => this.handleError(e));
