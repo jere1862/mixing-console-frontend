@@ -3,6 +3,12 @@ import { AudioNodeService } from '../services/audio-node.service';
 import { MatTabChangeEvent, MatSliderChange } from '@angular/material';
 import { AudioNode } from '../models/audio-node';
 import { SliderType } from '../console-slider/console-slider.component';
+import { ObservableMedia } from '@angular/flex-layout';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/takeWhile';
+import 'rxjs/add/operator/startWith';
 
 @Component({
   selector: 'app-console',
@@ -18,11 +24,13 @@ export class ConsoleComponent implements OnInit, OnChanges {
   fixNode: AudioNode;
   autoAdjust: boolean = false;
   selectedTabIndex: number;
+  cols: Observable<number>;
 
-  constructor(private audioNodeService: AudioNodeService) { }
+  constructor(private audioNodeService: AudioNodeService, private observableMedia: ObservableMedia) { }
 
   ngOnInit(): void {
     this.selectedTabIndex = 0;
+    this.makeCardsResponsive();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -52,5 +60,26 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   onSliderChange(node: AudioNode, sliderTypeString: string): void {
     this.audioNodeService.notifyChange(node, SliderType[sliderTypeString]);
+  }
+
+  makeCardsResponsive(): void {
+    const grid = new Map([
+      ['xs', 1],
+      ['sm', 1],
+      ['md', 1],
+      ['lg', 2],
+      ['xl', 3]
+    ]);
+    let start: number;
+    grid.forEach((cols, mqAlias) => {
+      if (this.observableMedia.isActive(mqAlias)) {
+        start = cols;
+      }
+    });
+    this.cols = this.observableMedia.asObservable()
+      .map(change => {
+        return grid.get(change.mqAlias);
+      })
+      .startWith(start);
   }
 }

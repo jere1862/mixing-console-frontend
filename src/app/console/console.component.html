@@ -1,11 +1,11 @@
-<mat-grid-list class="console-grid" cols="3" *ngIf="mobileNodes && fixNode">
+<mat-grid-list class="console-grid" [cols]="cols | async" *ngIf="mobileNodes && fixNode">
   <mat-grid-tile [colspan]="1">
     <mat-card id="fix-card" class="console-output-card mat-elevation-z6">
       <mat-card-content>
         <mat-toolbar color="accent">
           <span>{{ 'CONSOLE.FIX_NODE' | translate }}</span>
         </mat-toolbar>
-        <mat-grid-list cols="3" rowHeight="1:2.5">
+        <mat-grid-list cols="3" rowHeight="1:2">
           <mat-grid-tile [colspan]="1">
             <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
             <app-console-slider [value]="fixNode.volume" (sliderChange)="onSliderChange(fixNode, 'volume')"></app-console-slider>
@@ -27,11 +27,9 @@
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
-
   <mat-grid-tile [colspan]="1">
     <app-map [mobileNodes]="mobileNodes" [fixNode]="fixNode" [(selectedMobileNodeIndex)]="selectedTabIndex" (onMarkerClicked)="onMarkerClicked($event)"></app-map>
   </mat-grid-tile>
-
   <mat-grid-tile [colspan]="1">
     <mat-card id="mobile-card" class="console-output-card mat-elevation-z6">
       <mat-card-content>

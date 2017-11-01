@@ -11,10 +11,6 @@
   width: 90%;
 }
 
-/deep/ .mat-tab-body {
-  padding: 10px;
-}
-
 .automatic-adjustment {
   float: right;
 }
