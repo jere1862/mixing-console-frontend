@@ -17,7 +17,16 @@ import 'rxjs/add/observable/interval';
 export class DashboardComponent implements OnInit {
   private _language: string;
   private _nextLanguage: string;
-  private audioNodesObservableResponse: Array<AudioNode>;
+  private _audioNodesObservableResponse: Array<AudioNode>;
+
+  get audioNodesObservableResponse(): Array<AudioNode> {
+    return this._audioNodesObservableResponse;
+  }
+
+  set audioNodesObservableResponse(audioNodes: Array<AudioNode>) {
+    this._audioNodesObservableResponse = audioNodes;
+  }
+
 
   constructor(
     private translateService: TranslateService,

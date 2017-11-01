@@ -34,9 +34,7 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   initializeAudioNodes(): void {
-    if (this.mobileNodes.length !== 0 && this.mobileNodes.length === this.audioNodes.length) {
-      // TODO: Separate arrays to avoid iterating twice
-      // TODO: Handle adding new nodes in a different way
+    if (this.mobileNodes.length !== 0 && this.mobileNodes.length === this.audioNodes.length - 1) {
       this.mobileNodes.forEach(node => node = this.audioNodes.find(_node => _node.id === node.id));
     }else {
       this.mobileNodes = this.audioNodes.filter(node => !node.isFix);
