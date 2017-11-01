@@ -19,3 +19,10 @@
   position: absolute;
   top: 0;
 }
+
+.level {
+  height: 15px;
+  transform: rotate(270deg);
+  width: 800px;
+  margin: 20px -120px;
+}

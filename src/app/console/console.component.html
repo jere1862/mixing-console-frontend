@@ -18,10 +18,10 @@
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1">
             <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
-            <app-console-level [value]="fixNode.volume"></app-console-level>
-            <app-console-level [value]="fixNode.high"></app-console-level>
-            <app-console-level [value]="fixNode.med"></app-console-level>
-            <app-console-level [value]="fixNode.low"></app-console-level>
+            <mat-progress-bar class="level" [value]="fixNode.volume"></mat-progress-bar>
+            <mat-progress-bar class="level" [value]="fixNode.high"></mat-progress-bar>
+            <mat-progress-bar class="level" [value]="fixNode.med"></mat-progress-bar>
+            <mat-progress-bar class="level" [value]="fixNode.low"></mat-progress-bar>
           </mat-grid-tile>
         </mat-grid-list>
       </mat-card-content>
@@ -51,11 +51,11 @@
                   <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'low')"></app-console-slider>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="1">
-                  <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
-                  <app-console-level [value]="mobileNode.volume"></app-console-level>
-                  <app-console-level [value]="mobileNode.high"></app-console-level>
-                  <app-console-level [value]="mobileNode.med"></app-console-level>
-                  <app-console-level [value]="mobileNode.low"></app-console-level>
+                    <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
+                    <mat-progress-bar class="level" [value]="mobileNode.volume"></mat-progress-bar>
+                    <mat-progress-bar class="level" [value]="mobileNode.high"></mat-progress-bar>
+                    <mat-progress-bar class="level" [value]="mobileNode.med"></mat-progress-bar>
+                    <mat-progress-bar class="level" [value]="mobileNode.low"></mat-progress-bar>
                 </mat-grid-tile>
               </mat-grid-list>
             </mat-tab>
