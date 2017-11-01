@@ -79,14 +79,6 @@ describe('DashboardComponent', () => {
     const translateServiceStub: TranslateService = fixture.debugElement.injector.get(TranslateService);
     expect(translateServiceStub.use).toHaveBeenCalledWith(OTHER_LANGUAGE);
   });
-
-  it('should call the node service', async(() => {
-    component.audioNodes.subscribe(nodes => {
-      expect(nodes.length).toBe(1);
-      expect(nodes[0]).toEqual(mockNode);
-    });
-  }));
-
   it('should set next language', () => {
     expect(component.nextLanguage).toBe(OTHER_LANGUAGE);
     component.changeLanguage();

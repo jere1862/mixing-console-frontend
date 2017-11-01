@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { MdTabChangeEvent } from '@angular/material';
+import { AudioNodeService } from '../services/audio-node.service';
+import { MdTabChangeEvent, MdSliderChange } from '@angular/material';
 import { AudioNode } from '../models/audio-node';
-
-import { TranslateService } from '@ngx-translate/core';
+import { SliderType } from '../console-slider/console-slider.component';
 
 @Component({
   selector: 'app-console',
@@ -19,7 +19,7 @@ export class ConsoleComponent implements OnInit, OnChanges {
   autoAdjust: boolean = false;
   selectedTabIndex: number;
 
-  constructor(translateService: TranslateService) { }
+  constructor(private audioNodeService: AudioNodeService) { }
 
   ngOnInit(): void {
     this.selectedTabIndex = 0;
@@ -32,13 +32,14 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   initializeAudioNodes(): void {
-    this.audioNodes.forEach(audioNode => {
-      if (audioNode.isFix) {
-        this.fixNode = audioNode;
-      } else {
-        this.mobileNodes.push(audioNode);
-      }
-    });
+    if (this.mobileNodes.length) {
+      this.mobileNodes.forEach(node => {
+        node = this.audioNodes.find(_node => _node.id === node.id);
+      });
+    } else {
+      this.mobileNodes = this.audioNodes.filter(node => !node.isFix);
+    }
+    this.fixNode = this.audioNodes.find(node => node.isFix);
   }
 
   onMarkerClicked(selectedMobileNodeIndex: number): void {
@@ -47,5 +48,9 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   onSelectedTabChanged(tabChangeEvent: MdTabChangeEvent): void {
     this.selectedTabIndex = tabChangeEvent.index;
+  }
+
+  onSliderChange(node: AudioNode, sliderTypeString: string): void {
+    this.audioNodeService.notifyChange(node, SliderType[sliderTypeString]);
   }
 }

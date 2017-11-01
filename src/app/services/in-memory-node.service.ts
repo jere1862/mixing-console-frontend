@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { AudioNode } from '../models/audio-node';
 
+@Injectable()
 export class InMemoryNodeService implements InMemoryDbService {
 
-  createDb() {
-    let nodes: Array<AudioNode> = [
+  createDb(): object {
+    const nodes: Array<AudioNode> = [
       {
         id: 1,
         name: 'mic 1',
