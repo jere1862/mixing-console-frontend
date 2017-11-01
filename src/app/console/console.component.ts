@@ -51,9 +51,6 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   onSliderChange(node: AudioNode, sliderTypeString: string): void {
-    console.log(node);
-    console.log(sliderTypeString);
-    console.log(SliderType[sliderTypeString]);
     this.audioNodeService.notifyChange(node, SliderType[sliderTypeString]);
   }
 }
