@@ -5,18 +5,18 @@
         <mat-toolbar color="accent">
           <span>{{ 'CONSOLE.FIX_NODE' | translate }}</span>
         </mat-toolbar>
-        <mat-grid-list cols="3" rowHeight="1:2">
-          <mat-grid-tile [colspan]="1">
+        <mat-grid-list class="grid" cols="3">
+          <mat-grid-tile [colspan]="1" [rowspan]="2">
             <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
             <app-console-slider [value]="fixNode.volume" (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
           </mat-grid-tile>
-          <mat-grid-tile [colspan]="1">
+          <mat-grid-tile [colspan]="1" [rowspan]="2">
             <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
             <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'high', $event)"></app-console-slider>
             <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'med', $event)"></app-console-slider>
             <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'low', $event)"></app-console-slider>
           </mat-grid-tile>
-          <mat-grid-tile [colspan]="1">
+          <mat-grid-tile [colspan]="1" [rowspan]="2">
             <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
             <mat-progress-bar class="level" [value]="fixNode.volume"></mat-progress-bar>
             <mat-progress-bar class="level" [value]="fixNode.high"></mat-progress-bar>
@@ -32,25 +32,25 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1">
     <mat-card id="mobile-card" class="console-output-card mat-elevation-z6">
-      <mat-card-content>
         <mat-toolbar color="accent">
           <span>{{ 'CONSOLE.MOBILE_NODES' | translate }}</span>
         </mat-toolbar>
+      <mat-card-content>
         <mat-tab-group [selectedIndex]="selectedTabIndex" (selectChange)="onSelectedTabChanged($event)">
           <span *ngFor="let mobileNode of mobileNodes">
             <mat-tab label="{{ mobileNode.name | translate }}">
-              <mat-grid-list cols="3" rowHeight="1:2">
-                <mat-grid-tile [colspan]="1">
+              <mat-grid-list cols="3">
+                <mat-grid-tile [colspan]="1" [rowspan]="2">
                   <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
                   <app-console-slider [value]="mobileNode.volume" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
                 </mat-grid-tile>
-                <mat-grid-tile [colspan]="1">
+                <mat-grid-tile [colspan]="1" [rowspan]="2">
                   <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
                   <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'high', $event)"></app-console-slider>
                   <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'med', $event)"></app-console-slider>
                   <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'low', $event)"></app-console-slider>
                 </mat-grid-tile>
-                <mat-grid-tile [colspan]="1">
+                <mat-grid-tile [colspan]="1" [rowspan]="2">
                     <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
                     <mat-progress-bar class="level" [value]="mobileNode.volume"></mat-progress-bar>
                     <mat-progress-bar class="level" [value]="mobileNode.high"></mat-progress-bar>

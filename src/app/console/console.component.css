@@ -2,11 +2,6 @@
   margin: 1%;
 }
 
-/deep/ .mat-figure {
-  -webkit-margin-start: 0 !important;
-  -webkit-margin-end: 0 !important;
-}
-
 .console-output-card {
   width: 90%;
 }
@@ -22,7 +17,7 @@
 
 .level {
   height: 15px;
-  transform: rotate(270deg);
+  transform: rotate(-90deg);
   width: 800px;
-  margin: 20px -120px;
+  margin: 5vw -10vh;
 }
