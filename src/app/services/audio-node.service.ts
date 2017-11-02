@@ -8,30 +8,23 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AudioNodeService {
-  private nodesUrl: string = 'api/nodes';
-  private headers: Headers =  new Headers({'Content-Type': 'application/json'});
+  private nodesUrl: string = 'http://localhost:9000/api/nodes';
+  private headers: Headers =  new Headers({'Content-Type': 'application/json', });
 
   constructor(private http: Http) { }
 
-  getNodes(): Promise<Array<AudioNode>> {
-    return this.http.get(this.nodesUrl)
-      .toPromise()
-      .then(response => response.json().data)
-      .catch(e => this.handleError(e));
-  }
-
-  notifyChange(nodeId: Number, sliderType: SliderType, value: Number): Promise<number> {
-    const url = `/notify?id=${nodeId}`;
+  getNodes(): Observable<Array<AudioNode>> {
     return this.http
-               .post(this.nodesUrl + url, {sliderType: sliderType, value: value})
-               .toPromise()
-               .then(response => response.status)
-               .catch(e => this.handleError(e));
+               .get(this.nodesUrl)
+               .map(res => res.json())
+               .catch(error => Observable.throw(error.json().error || 'Server error'));
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+  notifyChange(nodeId: Number, sliderType: SliderType, value: Number): Observable<number> {
+    const url = `/${nodeId}`;
+    return this.http
+               .put(this.nodesUrl + url, {sliderType: sliderType, value: value, headers: this.headers})
+               .map(res => res.status)
+               .catch(error => Observable.throw(error.json().error || 'Server error'));
   }
-
 }

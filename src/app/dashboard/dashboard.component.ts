@@ -33,12 +33,11 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    Observable.fromPromise<Array<AudioNode>>(this.audioNodeService.getNodes())
-              .subscribe((res) => this.audioNodesObservableResponse = res);
+    this.audioNodeService.getNodes().subscribe(res => this.audioNodesObservableResponse = res);
 
     Observable.interval(1000)
-                .switchMap(() => this.audioNodeService.getNodes())
-                .subscribe((res) => this.audioNodesObservableResponse = res);
+            .switchMap(() => this.audioNodeService.getNodes())
+            .subscribe((res) => this.audioNodesObservableResponse = res);
 
     this.setNextLanguage();
   }

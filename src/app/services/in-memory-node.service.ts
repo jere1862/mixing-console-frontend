@@ -54,7 +54,7 @@ export class InMemoryNodeService implements InMemoryDbService {
         longitude: -71.927424,
         isFix: true,
         markerOpacity: 0.6
-      },
+      }
     ];
     return { nodes };
   }
