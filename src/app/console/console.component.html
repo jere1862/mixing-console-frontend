@@ -24,12 +24,29 @@
             <mat-progress-bar class="level" [value]="fixNode.low"></mat-progress-bar>
           </mat-grid-tile>
         </mat-grid-list>
+        <mat-grid-list cols="3" rowHeight="20">
+          <mat-grid-tile [colspan]="1">
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <h4 class="eq-label">{{ 'CONSOLE.HIGH' | translate }}</h4>
+            <h4 class="eq-label">{{ 'CONSOLE.MED' | translate }}</h4>
+            <h4 class="eq-label">{{ 'CONSOLE.LOW' | translate }}</h4>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <h4 class="eq-label">{{ 'CONSOLE.VOLUME' | translate }}</h4>
+            <h4 class="eq-label">{{ 'CONSOLE.HIGH' | translate }}</h4>
+            <h4 class="eq-label">{{ 'CONSOLE.MED' | translate }}</h4>
+            <h4 class="eq-label">{{ 'CONSOLE.LOW' | translate }}</h4>
+          </mat-grid-tile>
+        </mat-grid-list>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
+
   <mat-grid-tile [colspan]="1">
     <app-map [mobileNodes]="mobileNodes" [fixNode]="fixNode" [(selectedMobileNodeIndex)]="selectedTabIndex" (onMarkerClicked)="onMarkerClicked($event)"></app-map>
   </mat-grid-tile>
+
   <mat-grid-tile [colspan]="1">
     <mat-card id="mobile-card" class="console-output-card mat-elevation-z6">
         <mat-toolbar color="accent">
@@ -51,18 +68,35 @@
                   <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'low', $event)"></app-console-slider>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="1" [rowspan]="2">
-                    <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
-                    <mat-progress-bar class="level" [value]="mobileNode.volume"></mat-progress-bar>
-                    <mat-progress-bar class="level" [value]="mobileNode.high"></mat-progress-bar>
-                    <mat-progress-bar class="level" [value]="mobileNode.med"></mat-progress-bar>
-                    <mat-progress-bar class="level" [value]="mobileNode.low"></mat-progress-bar>
+                  <h2 class="parameter-title">{{ 'CONSOLE.LEVELS' | translate }}</h2>
+                  <mat-progress-bar class="level" [value]="mobileNode.volume"></mat-progress-bar>
+                  <mat-progress-bar class="level" [value]="mobileNode.high"></mat-progress-bar>
+                  <mat-progress-bar class="level" [value]="mobileNode.med"></mat-progress-bar>
+                  <mat-progress-bar class="level" [value]="mobileNode.low"></mat-progress-bar>
+                </mat-grid-tile>
+              </mat-grid-list>
+              <mat-grid-list cols="3" rowHeight="20">
+                <mat-grid-tile [colspan]="1">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1">
+                  <h4 class="eq-label">{{ 'CONSOLE.HIGH' | translate }}</h4>
+                  <h4 class="eq-label">{{ 'CONSOLE.MED' | translate }}</h4>
+                  <h4 class="eq-label">{{ 'CONSOLE.LOW' | translate }}</h4>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1">
+                  <h4 class="eq-label">{{ 'CONSOLE.VOLUME' | translate }}</h4>
+                  <h4 class="eq-label">{{ 'CONSOLE.HIGH' | translate }}</h4>
+                  <h4 class="eq-label">{{ 'CONSOLE.MED' | translate }}</h4>
+                  <h4 class="eq-label">{{ 'CONSOLE.LOW' | translate }}</h4>
                 </mat-grid-tile>
               </mat-grid-list>
             </mat-tab>
           </span>
         </mat-tab-group>
-        <mat-checkbox class="automatic-adjustment" [(ngModel)]="autoAdjust">{{ 'CONSOLE.AUTOMATIC_ADJUSTMENT' | translate }}</mat-checkbox>
       </mat-card-content>
+      <mat-card-actions>
+        <mat-checkbox class="automatic-adjustment" [(ngModel)]="autoAdjust">{{ 'CONSOLE.AUTOMATIC_ADJUSTMENT' | translate }}</mat-checkbox>
+      </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

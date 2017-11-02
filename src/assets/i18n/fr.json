@@ -9,6 +9,9 @@
     "VOLUME": "Volume",
     "EQUALIZER": "Égaliseur",
     "LEVELS": "Niveaux",
-    "AUTOMATIC_ADJUSTMENT": "Ajuster les niveaux automatiquement"
+    "AUTOMATIC_ADJUSTMENT": "Ajuster les niveaux automatiquement",
+    "HIGH": "Haut",
+    "MED": "Moyen",
+    "LOW": "Bas"
   }
 }
