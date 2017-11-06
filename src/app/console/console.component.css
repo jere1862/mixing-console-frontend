@@ -1,18 +1,5 @@
-.console-grid {
-  margin: 3%;
-}
-
-/deep/ .mat-figure {
-  -webkit-margin-start: 0 !important;
-  -webkit-margin-end: 0 !important;
-}
-
 .console-output-card {
   width: 90%;
-}
-
-/deep/ .mat-tab-body {
-  padding: 10px;
 }
 
 .automatic-adjustment {
@@ -22,4 +9,19 @@
 .parameter-title {
   position: absolute;
   top: 0;
+}
+
+.level {
+  height: 15px;
+  transform: rotate(-90deg);
+  width: 800px;
+  margin: 0 -12vh;
+}
+
+.eq-label {
+  margin: 0 5%;
+}
+
+.grid-eq-labels {
+  margin-top: -15px;
 }

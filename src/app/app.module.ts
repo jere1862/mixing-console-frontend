@@ -15,11 +15,11 @@ import { ConsoleSliderComponent } from './console-slider/console-slider.componen
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
 import { AudioNodeService } from './services/audio-node.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Imports for loading & configuring the in-memory web api
 import { HttpInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryNodeService } from './services/in-memory-node.service';
-import { ConsoleLevelComponent } from './console-level/console-level.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -31,8 +31,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DashboardComponent,
     ConsoleComponent,
     ConsoleSliderComponent,
-    MapComponent,
-    ConsoleLevelComponent
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +51,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps: [HttpClient]
       }
     }),
-    FormsModule
+    FormsModule,
+    FlexLayoutModule
   ],
   providers: [AudioNodeService],
   bootstrap: [AppComponent]
