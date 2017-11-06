@@ -15,9 +15,13 @@
   height: 15px;
   transform: rotate(-90deg);
   width: 800px;
-  margin: 0 -10vh;
+  margin: 0 -12vh;
 }
 
 .eq-label {
   margin: 0 5%;
+}
+
+.grid-eq-labels {
+  margin-top: -15px;
 }
