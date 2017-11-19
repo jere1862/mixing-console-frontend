@@ -90,13 +90,17 @@
                   <h4 class="eq-label">{{ 'CONSOLE.LOW' | translate }}</h4>
                 </mat-grid-tile>
               </mat-grid-list>
+              <mat-grid-list cols="3" rowHeight="50px">
+                <mat-grid-tile [colspan]="3">
+                  <div class="automatic-adjustment">
+                    <mat-checkbox [(ngModel)]="mobileNode.autoAdjust">{{ 'CONSOLE.AUTOMATIC_ADJUSTMENT' | translate }}</mat-checkbox>
+                  </div>
+                </mat-grid-tile>
+              </mat-grid-list>
             </mat-tab>
           </span>
         </mat-tab-group>
       </mat-card-content>
-      <mat-card-actions>
-        <mat-checkbox class="automatic-adjustment" [(ngModel)]="autoAdjust">{{ 'CONSOLE.AUTOMATIC_ADJUSTMENT' | translate }}</mat-checkbox>
-      </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

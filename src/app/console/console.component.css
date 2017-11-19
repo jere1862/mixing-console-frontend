@@ -3,7 +3,8 @@
 }
 
 .automatic-adjustment {
-  float: right;
+  position: absolute;
+  right: 0;
 }
 
 .parameter-title {
