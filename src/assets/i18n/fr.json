@@ -1,6 +1,7 @@
 {
   "DASHBOARD": {
-    "TITLE": "Console de mixage"
+    "TITLE": "Console de mixage",
+    "LIMIT_VOLUME": "Limiter le volume aux normes municipales"
   },
   "CONSOLE": {
     "FIX_NODE": "Noeud fixe",

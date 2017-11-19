@@ -2,11 +2,18 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { AudioNode } from '../models/audio-node';
 
+export class DbNode {
+  limitVolume: boolean;
+  nodes: Array<AudioNode>;
+}
+
 @Injectable()
 export class InMemoryNodeService implements InMemoryDbService {
 
-  createDb(): object {
-    const nodes: Array<AudioNode> = [
+  createDb(): DbNode {
+    const dbNode: DbNode = {
+      limitVolume: false,
+      nodes: [
       {
         id: 1,
         name: 'mic 1',
@@ -58,8 +65,8 @@ export class InMemoryNodeService implements InMemoryDbService {
         isFix: true,
         markerOpacity: 0.6,
         autoAdjust: false
-      },
-    ];
-    return { nodes };
+      }],
+    };
+    return { nodes: dbNode.nodes, limitVolume: dbNode.limitVolume };
   }
 }

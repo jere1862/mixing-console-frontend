@@ -18,14 +18,7 @@ export class DashboardComponent implements OnInit {
   private _language: string;
   private _nextLanguage: string;
   private _audioNodesObservableResponse: Array<AudioNode>;
-
-  get audioNodesObservableResponse(): Array<AudioNode> {
-    return this._audioNodesObservableResponse;
-  }
-
-  set audioNodesObservableResponse(audioNodes: Array<AudioNode>) {
-    this._audioNodesObservableResponse = audioNodes;
-  }
+  private limitVolume: boolean;
 
   constructor(
     private translateService: TranslateService,
@@ -56,6 +49,10 @@ export class DashboardComponent implements OnInit {
     this.setNextLanguage();
   }
 
+  onLimitVolumeChange(): void {
+    this.audioNodeService.limitVolume(this.limitVolume);
+  }
+
   setNextLanguage(): void {
     if (this.language === 'fr') {
       this.nextLanguage = 'en';
@@ -78,6 +75,14 @@ export class DashboardComponent implements OnInit {
 
   set nextLanguage(language: string) {
     this._nextLanguage = language;
+  }
+
+  get audioNodesObservableResponse(): Array<AudioNode> {
+    return this._audioNodesObservableResponse;
+  }
+
+  set audioNodesObservableResponse(audioNodes: Array<AudioNode>) {
+    this._audioNodesObservableResponse = audioNodes;
   }
 
 }

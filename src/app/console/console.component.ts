@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AudioNodeService } from '../services/audio-node.service';
-import { MatTabChangeEvent, MatSliderChange } from '@angular/material';
+import { MatTabChangeEvent, MatSliderChange, MatCheckboxChange } from '@angular/material';
 import { AudioNode } from '../models/audio-node';
 import { SliderType } from '../console-slider/console-slider.component';
 import { ObservableMedia } from '@angular/flex-layout';
@@ -63,6 +63,10 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   onSliderChange(node: AudioNode, sliderTypeString: string, matSliderChange: MatSliderChange): void {
     this.audioNodeService.notifyChange(node.id, SliderType[sliderTypeString], matSliderChange.value);
+  }
+
+  onAutoAdjustChange(node: AudioNode, matCheckboxChange: MatCheckboxChange): void {
+    this.audioNodeService.notifyAutoAdjustChange(node.id, matCheckboxChange.checked);
   }
 
   makeCardsResponsive(): void {

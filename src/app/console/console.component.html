@@ -93,7 +93,7 @@
               <mat-grid-list cols="3" rowHeight="50px">
                 <mat-grid-tile [colspan]="3">
                   <div class="automatic-adjustment">
-                    <mat-checkbox [(ngModel)]="mobileNode.autoAdjust">{{ 'CONSOLE.AUTOMATIC_ADJUSTMENT' | translate }}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="mobileNode.autoAdjust" (change)="onAutoAdjustChange(mobileNode, $event)">{{ 'CONSOLE.AUTOMATIC_ADJUSTMENT' | translate }}</mat-checkbox>
                   </div>
                 </mat-grid-tile>
               </mat-grid-list>
