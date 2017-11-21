@@ -4,6 +4,7 @@
     "LIMIT_VOLUME": "Limiter le volume aux normes municipales"
   },
   "CONSOLE": {
+    "LOADING": "Chargement des noeuds...",
     "FIX_NODE": "Noeud fixe",
     "MOBILE_NODE": "Noeud mobile",
     "MOBILE_NODES": "Noeuds mobiles",

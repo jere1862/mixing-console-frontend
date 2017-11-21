@@ -1,3 +1,7 @@
+<div class="loading" *ngIf="!mobileNodes || !fixNode">
+  <h2>{{ 'CONSOLE.LOADING' | translate }}</h2>
+  <mat-spinner class="loading-spinner"></mat-spinner>
+</div>
 <mat-grid-list class="console-grid" [cols]="cols | async" *ngIf="mobileNodes && fixNode">
   <mat-grid-tile [colspan]="1">
     <mat-card id="fix-card" class="console-output-card mat-elevation-z6">
