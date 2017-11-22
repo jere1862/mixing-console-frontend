@@ -1,8 +1,10 @@
 {
   "DASHBOARD": {
-    "TITLE": "Mixing console"
+    "TITLE": "Mixing console",
+    "LIMIT_VOLUME": "Limit volume to comply with municipality standards"
   },
   "CONSOLE": {
+    "LOADING": "Loading nodes...",
     "FIX_NODE": "Fix node",
     "MOBILE_NODE": "Mobile node",
     "MOBILE_NODES": "Mobile nodes",

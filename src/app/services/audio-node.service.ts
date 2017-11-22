@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class AudioNodeService {
   private nodesUrl: string = 'api/nodes';
+  private limitVolumeUrl: string = 'api/limitVolume';
   private headers: Headers =  new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
@@ -24,6 +25,23 @@ export class AudioNodeService {
     const url = `/notify?id=${nodeId}`;
     return this.http
                .post(this.nodesUrl + url, {sliderType: sliderType, value: value})
+               .toPromise()
+               .then(response => response.status)
+               .catch(e => this.handleError(e));
+  }
+
+  notifyAutoAdjustChange(nodeId: number, autoAdjust: boolean): Promise<number> {
+    const url = `/notify?id=${nodeId}`;
+    return this.http
+               .post(this.nodesUrl + url, {autoAdjust: autoAdjust})
+               .toPromise()
+               .then(response => response.status)
+               .catch(e => this.handleError(e));
+  }
+
+  limitVolume(limitVolume: boolean): Promise<boolean> {
+    return this.http
+               .post(this.nodesUrl, {limitVolume: limitVolume})
                .toPromise()
                .then(response => response.status)
                .catch(e => this.handleError(e));

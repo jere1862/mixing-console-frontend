@@ -1,9 +1,19 @@
+.loading {
+  width: 20%;
+  margin: 0 auto;
+}
+
+.loading .loading-spinner {
+  margin-left: 20%;
+}
+
 .console-output-card {
   width: 90%;
 }
 
 .automatic-adjustment {
-  float: right;
+  position: absolute;
+  right: 0;
 }
 
 .parameter-title {
