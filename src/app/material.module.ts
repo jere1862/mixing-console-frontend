@@ -10,7 +10,8 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatProgressBarModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  NoConflictStyleCompatibilityMode
 } from '@angular/material';
 
 @NgModule({
@@ -25,7 +26,8 @@ import {
     MatCardModule,
     MatCheckboxModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NoConflictStyleCompatibilityMode
   ],
   exports: [
     MatButtonModule,
@@ -38,7 +40,8 @@ import {
     MatCardModule,
     MatCheckboxModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NoConflictStyleCompatibilityMode
   ]
 })
 export class MaterialModule { }
