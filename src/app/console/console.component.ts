@@ -21,7 +21,6 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   mobileNodes: Array<AudioNode> = Array<AudioNode>();
   fixNode: AudioNode;
-  autoAdjust: boolean = false;
   selectedTabIndex: number;
   cols: Observable<number>;
 
@@ -80,16 +79,18 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
     let start: number;
 
-    grid.forEach((cols, mqAlias) => {
-      if (this.observableMedia.isActive(mqAlias)) {
-        start = cols;
-      }
-    });
+    if (this.observableMedia.asObservable() !== undefined) {
+      grid.forEach((cols, mqAlias) => {
+        if (this.observableMedia.isActive(mqAlias)) {
+          start = cols;
+        }
+      });
 
-    this.cols = this.observableMedia.asObservable()
-      .map(change => {
-        return grid.get(change.mqAlias);
-      })
-      .startWith(start);
+      this.cols = this.observableMedia.asObservable()
+        .map(change => {
+          return grid.get(change.mqAlias);
+        })
+        .startWith(start);
+    }
   }
 }

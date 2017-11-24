@@ -3,10 +3,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../material.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import 'hammerjs';
-
+import { BaseRequestOptions, ConnectionBackend, Http, RequestOptions, Response, ResponseOptions } from '@angular/http';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { ObservableMedia } from '@angular/flex-layout';
+import { Observable } from 'rxjs/Observable';
+import { AudioNode } from '../models/audio-node';
 import { ConsoleComponent } from './console.component';
 import { ConsoleSliderComponent } from '../console-slider/console-slider.component';
+import { AudioNodeService } from '../services/audio-node.service';
+import 'hammerjs';
 
 describe('ConsoleComponent', () => {
   let component: ConsoleComponent;
@@ -25,6 +30,13 @@ describe('ConsoleComponent', () => {
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
+      ],
+      providers: [
+        { provide: ConnectionBackend, useClass: MockBackend },
+        { provide: RequestOptions, useClass: BaseRequestOptions },
+        Http,
+        AudioNodeService,
+        ObservableMedia
       ]
     })
       .compileComponents();
@@ -33,7 +45,7 @@ describe('ConsoleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ConsoleComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    component.audioNodes = new Array<AudioNode>();
   });
 
   it('should create', () => {
@@ -41,6 +53,14 @@ describe('ConsoleComponent', () => {
   });
 
   describe('Initialization', () => {
+    beforeEach(() => {
+      const mobileNode: AudioNode = new AudioNode();
+      const fixNode: AudioNode = new AudioNode();
+      fixNode.isFix = true;
+      component.audioNodes.push(mobileNode, fixNode);
+      component.initializeAudioNodes();
+    });
+
     it('should initialize a list of mobile nodes', () => {
       fixture.whenStable().then(() => {
         expect(component.mobileNodes).toBeTruthy();
@@ -56,6 +76,18 @@ describe('ConsoleComponent', () => {
   });
 
   describe('The DOM', () => {
+    beforeEach(() => {
+      const mobileNode: AudioNode = new AudioNode();
+      const fixNode: AudioNode = new AudioNode();
+
+      fixNode.isFix = true;
+      component.audioNodes.push(mobileNode, fixNode);
+      component.initializeAudioNodes();
+      component.cols = Observable.of(3);
+
+      fixture.detectChanges();
+    });
+
     it('should contain all slider', () => {
       const compiled = fixture.debugElement.nativeElement;
       const TOTAL_NUMBER_OF_SLIDERS: number = 8;
@@ -66,7 +98,7 @@ describe('ConsoleComponent', () => {
     it('should contain all tabs', () => {
       const compiled = fixture.debugElement.nativeElement;
 
-      expect(compiled.querySelectorAll('.mat-tab-label').length).toEqual(component.numberOfMobileNodes);
+      expect(compiled.querySelectorAll('.mat-tab-label').length).toEqual(component.mobileNodes.length);
     });
 
     it('should contain a card for the fix node', () => {

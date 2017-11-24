@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AudioNode } from '../models/audio-node'; 
 import { MapComponent } from './map.component';
 import { AgmCoreModule } from '@agm/core';
 import { MaterialModule } from '../material.module';
@@ -23,8 +24,20 @@ describe('MapComponent', () => {
   }));
 
   beforeEach(() => {
+    const mobileNode: AudioNode = new AudioNode();
+    const fixNode: AudioNode = new AudioNode();
+
     fixture = TestBed.createComponent(MapComponent);
     component = fixture.componentInstance;
+
+    component.mobileNodes = new Array<AudioNode>();
+    component.fixNode = new AudioNode();
+
+    fixNode.isFix = true;
+
+    component.mobileNodes.push(mobileNode);
+    component.fixNode = fixNode;
+
     fixture.detectChanges();
   });
 
