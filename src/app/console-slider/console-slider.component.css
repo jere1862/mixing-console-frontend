@@ -1,7 +1,6 @@
 .slider {
-  height: 35vh;
+  height: 30vh;
   margin-right: 5%;
-  margin-top: 50px;
 }
 
 .slider .mat-slider-thumb {

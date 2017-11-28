@@ -1,25 +1,37 @@
-.console-grid {
-  margin: 3%;
+.loading {
+  width: 20%;
+  margin: 0 auto;
 }
 
-/deep/ .mat-figure {
-  -webkit-margin-start: 0 !important;
-  -webkit-margin-end: 0 !important;
+.loading .loading-spinner {
+  margin-left: 20%;
 }
 
 .console-output-card {
   width: 90%;
 }
 
-/deep/ .mat-tab-body {
-  padding: 10px;
-}
-
 .automatic-adjustment {
-  float: right;
+  position: absolute;
+  right: 0;
 }
 
 .parameter-title {
   position: absolute;
   top: 0;
+}
+
+.level {
+  height: 15px;
+  transform: rotate(-90deg);
+  width: 800px;
+  margin: 0 -12vh;
+}
+
+.eq-label {
+  margin: 0 5%;
+}
+
+.grid-eq-labels {
+  margin-top: -15px;
 }

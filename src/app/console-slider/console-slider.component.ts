@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, ViewEncapsulation, EventEmitter } from '@angular/core';
-import { MdSliderChange } from '@angular/material';
+import { MatSliderChange } from '@angular/material';
 
 export enum SliderType {
   volume = 0,
@@ -21,15 +21,15 @@ export class ConsoleSliderComponent implements OnInit {
   value: number;
 
   @Output()
-  sliderChange: EventEmitter<MdSliderChange> = new EventEmitter();
+  sliderChange: EventEmitter<MatSliderChange> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSliderChange(mdSliderChange: MdSliderChange): void {
-    this.sliderChange.emit(mdSliderChange);
+  onSliderChange(matSliderChange: MatSliderChange): void {
+    this.sliderChange.emit(matSliderChange);
   }
 
 }
