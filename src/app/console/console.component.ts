@@ -42,9 +42,10 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   initializeAudioNodes(): void {
-    if (this.mobileNodes.length) {
-      this.mobileNodes.forEach(node => {
-        node = this.audioNodes.find(_node => _node.id === node.id);
+    if (this.mobileNodes.length && this.mobileNodes.length === this.audioNodes.length - 1) {
+      this.mobileNodes.forEach((node, index) => {
+        const newNodeValue = this.audioNodes.find(_node => _node.id === node.id);
+        Object.keys(newNodeValue).forEach(key => this.mobileNodes[index][key] = newNodeValue[key]);
       });
     } else {
       this.mobileNodes = this.audioNodes.filter(node => !node.isFix);
@@ -61,11 +62,11 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   onSliderChange(node: AudioNode, sliderTypeString: string, matSliderChange: MatSliderChange): void {
-    this.audioNodeService.notifyChange(node.id, SliderType[sliderTypeString], matSliderChange.value);
+    this.audioNodeService.notifyChange(node.id, SliderType[sliderTypeString], matSliderChange.value).subscribe();
   }
 
   onAutoAdjustChange(node: AudioNode, matCheckboxChange: MatCheckboxChange): void {
-    this.audioNodeService.notifyAutoAdjustChange(node.id, matCheckboxChange.checked);
+    this.audioNodeService.notifyAutoAdjustChange(node.id, matCheckboxChange.checked).subscribe();
   }
 
   makeCardsResponsive(): void {

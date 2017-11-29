@@ -41,7 +41,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     }),
     HttpModule,
     HttpClientModule,
-    HttpInMemoryWebApiModule.forRoot(InMemoryNodeService),
+    //HttpInMemoryWebApiModule.forRoot(InMemoryNodeService),
     AppRoutingModule,
     MaterialModule,
     TranslateModule.forRoot({
