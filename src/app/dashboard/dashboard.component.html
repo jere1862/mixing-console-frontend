@@ -1,9 +1,12 @@
-<md-toolbar color="primary">
+<mat-toolbar color="primary">
   <span>{{ 'DASHBOARD.TITLE' | translate }}</span>
   <span class="toolbar-spacer"></span>
-  <button md-icon-button (click)="changeLanguage()">
-    <md-icon>language</md-icon>
+  <button mat-icon-button (click)="changeLanguage()">
+    <mat-icon>language</mat-icon>
     {{nextLanguage}}
   </button>
-</md-toolbar>
+</mat-toolbar>
+<div class="volume-limiter" *ngIf="audioNodesObservableResponse">
+  <mat-checkbox [(ngModel)]="limitVolume" (change)="onLimitVolumeChange()">{{ 'DASHBOARD.LIMIT_VOLUME' | translate }}</mat-checkbox>
+</div>
 <app-console [audioNodes]="audioNodesObservableResponse"></app-console>

@@ -1,14 +1,19 @@
 {
   "DASHBOARD": {
-    "TITLE": "Console de mixage"
+    "TITLE": "Console de mixage",
+    "LIMIT_VOLUME": "Limiter le volume aux normes municipales"
   },
   "CONSOLE": {
+    "LOADING": "Chargement des noeuds...",
     "FIX_NODE": "Noeud fixe",
     "MOBILE_NODE": "Noeud mobile",
     "MOBILE_NODES": "Noeuds mobiles",
     "VOLUME": "Volume",
     "EQUALIZER": "Égaliseur",
     "LEVELS": "Niveaux",
-    "AUTOMATIC_ADJUSTMENT": "Ajuster les niveaux automatiquement"
+    "AUTOMATIC_ADJUSTMENT": "Ajuster les niveaux automatiquement",
+    "HIGH": "Haut",
+    "MED": "Moyen",
+    "LOW": "Bas"
   }
 }

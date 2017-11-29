@@ -8,6 +8,8 @@ import { MapComponent } from '../map/map.component';
 import { AudioNodeService } from '../services/audio-node.service';
 import { AudioNode } from '../models/audio-node';
 import { mockNode } from '../mocks/audio-node-mock';
+import { SliderType } from '../console-slider/console-slider.component';
+import { Observable } from 'rxjs/Observable';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -29,9 +31,7 @@ class TranslateServiceStub {
 }
 
 class AudioNodeServiceStub {
-  getNodes = () => new Promise((resolve, reject) => {
-    resolve(Array.of(mockNode));
-  })
+  getNodes = () => Observable.of(Array.of(mockNode));
 }
 
 describe('DashboardComponent', () => {

@@ -4,7 +4,6 @@ import { Http } from '@angular/http';
 import { AudioNodeService } from '../services/audio-node.service';
 import { AudioNode } from '../models/audio-node';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/observable/interval';
 
@@ -18,14 +17,7 @@ export class DashboardComponent implements OnInit {
   private _language: string;
   private _nextLanguage: string;
   private _audioNodesObservableResponse: Array<AudioNode>;
-
-  get audioNodesObservableResponse(): Array<AudioNode> {
-    return this._audioNodesObservableResponse;
-  }
-
-  set audioNodesObservableResponse(audioNodes: Array<AudioNode>) {
-    this._audioNodesObservableResponse = audioNodes;
-  }
+  private limitVolume: boolean;
 
   constructor(
     private translateService: TranslateService,
@@ -33,12 +25,15 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.audioNodeService.getNodes().subscribe(res => this.audioNodesObservableResponse = res);
+    const test: Observable<Array<AudioNode>> = this.audioNodeService.getNodes();
+    console.log("allo");
+    test.subscribe(res => {console.log(res); this.audioNodesObservableResponse = res;});
 
     Observable.interval(1000)
             .switchMap(() => this.audioNodeService.getNodes())
             .subscribe((res) => this.audioNodesObservableResponse = res);
 
+    this.language = this.translateService.currentLang;
     this.setNextLanguage();
   }
 
@@ -52,6 +47,10 @@ export class DashboardComponent implements OnInit {
     this.translateService.use(this.language);
 
     this.setNextLanguage();
+  }
+
+  onLimitVolumeChange(): void {
+    this.audioNodeService.limitVolume(this.limitVolume).subscribe();
   }
 
   setNextLanguage(): void {
@@ -76,6 +75,14 @@ export class DashboardComponent implements OnInit {
 
   set nextLanguage(language: string) {
     this._nextLanguage = language;
+  }
+
+  get audioNodesObservableResponse(): Array<AudioNode> {
+    return this._audioNodesObservableResponse;
+  }
+
+  set audioNodesObservableResponse(audioNodes: Array<AudioNode>) {
+    this._audioNodesObservableResponse = audioNodes;
   }
 
 }

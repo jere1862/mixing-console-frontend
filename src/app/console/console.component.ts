@@ -1,28 +1,38 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AudioNodeService } from '../services/audio-node.service';
-import { MdTabChangeEvent, MdSliderChange } from '@angular/material';
+import { MatTabChangeEvent, MatSliderChange, MatCheckboxChange } from '@angular/material';
 import { AudioNode } from '../models/audio-node';
 import { SliderType } from '../console-slider/console-slider.component';
+import { ObservableMedia } from '@angular/flex-layout';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/takeWhile';
+import 'rxjs/add/operator/startWith';
 
 @Component({
   selector: 'app-console',
   templateUrl: './console.component.html',
   styleUrls: ['./console.component.css']
 })
-
 export class ConsoleComponent implements OnInit, OnChanges {
   @Input()
   audioNodes: Array<AudioNode>;
 
   mobileNodes: Array<AudioNode> = Array<AudioNode>();
   fixNode: AudioNode;
-  autoAdjust: boolean = false;
   selectedTabIndex: number;
+  cols: Observable<number>;
 
-  constructor(private audioNodeService: AudioNodeService) { }
+  private readonly XL_NUMBER_OF_COLUMNS: number = 3;
+  private readonly LG_NUMBER_OF_COLUMNS: number = 2;
+  private readonly MD_TO_SM_NUMBER_OF_COLUMNS: number = 1;
+
+  constructor(private audioNodeService: AudioNodeService, private observableMedia: ObservableMedia) { }
 
   ngOnInit(): void {
     this.selectedTabIndex = 0;
+    this.makeCardsResponsive();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,11 +57,41 @@ export class ConsoleComponent implements OnInit, OnChanges {
     this.selectedTabIndex = selectedMobileNodeIndex;
   }
 
-  onSelectedTabChanged(tabChangeEvent: MdTabChangeEvent): void {
+  onSelectedTabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.selectedTabIndex = tabChangeEvent.index;
   }
 
-  onSliderChange(node: AudioNode, sliderTypeString: string, mdSliderChange: MdSliderChange): void {
-    this.audioNodeService.notifyChange(node.id, SliderType[sliderTypeString], mdSliderChange.value);
+  onSliderChange(node: AudioNode, sliderTypeString: string, matSliderChange: MatSliderChange): void {
+    this.audioNodeService.notifyChange(node.id, SliderType[sliderTypeString], matSliderChange.value).subscribe();
+  }
+
+  onAutoAdjustChange(node: AudioNode, matCheckboxChange: MatCheckboxChange): void {
+    this.audioNodeService.notifyAutoAdjustChange(node.id, matCheckboxChange.checked).subscribe();
+  }
+
+  makeCardsResponsive(): void {
+    const grid = new Map([
+      ['xs', this.MD_TO_SM_NUMBER_OF_COLUMNS],
+      ['sm', this.MD_TO_SM_NUMBER_OF_COLUMNS],
+      ['md', this.MD_TO_SM_NUMBER_OF_COLUMNS],
+      ['lg', this.LG_NUMBER_OF_COLUMNS],
+      ['xl', this.XL_NUMBER_OF_COLUMNS]
+    ]);
+
+    let start: number;
+
+    if (this.observableMedia.asObservable() !== undefined) {
+      grid.forEach((cols, mqAlias) => {
+        if (this.observableMedia.isActive(mqAlias)) {
+          start = cols;
+        }
+      });
+
+      this.cols = this.observableMedia.asObservable()
+        .map(change => {
+          return grid.get(change.mqAlias);
+        })
+        .startWith(start);
+    }
   }
 }

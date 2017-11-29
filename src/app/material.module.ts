@@ -8,7 +8,10 @@ import {
   MatGridListModule,
   MatTabsModule,
   MatCardModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  NoConflictStyleCompatibilityMode
 } from '@angular/material';
 
 @NgModule({
@@ -21,7 +24,10 @@ import {
     MatGridListModule,
     MatTabsModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    NoConflictStyleCompatibilityMode
   ],
   exports: [
     MatButtonModule,
@@ -32,7 +38,10 @@ import {
     MatGridListModule,
     MatTabsModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    NoConflictStyleCompatibilityMode
   ]
 })
 export class MaterialModule { }
