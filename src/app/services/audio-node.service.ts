@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { AudioNode } from '../models/audio-node';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { SliderType } from '../console-slider/console-slider.component';
 import 'rxjs/add/operator/catch';
+
 
 @Injectable()
 export class AudioNodeService {
   private nodesUrl: string = 'http://localhost:9000/api/nodes';
   private limitVolumeUrl: string = '/limitSound';
   private notifyChangeUrl: string = '/change';
-  private adjustAutomaticallyUrl: string = '/automaticAdjustment';
+  private autoAdjustUrl: string = '/automaticAdjustment';
 
   private headers: Headers =  new Headers({'Content-Type': 'application/json'});
 
@@ -31,7 +32,7 @@ export class AudioNodeService {
 
   notifyAutoAdjustChange(nodeId: number, autoAdjust: boolean): Observable<number> {
     return this.makeHttpRequest(this.http
-               .put(this.nodesUrl + this.adjustAutomaticallyUrl,
+               .put(this.nodesUrl + this.autoAdjustUrl,
                    {id: nodeId, adjustAutomatically: autoAdjust},
                    {headers: this.headers}));
   }
@@ -49,6 +50,6 @@ export class AudioNodeService {
   }
 
   private handleError(error: any): Observable<any> {
-    return Observable.throw(error.json().error || 'Server error');
+    return Observable.throw(new Error(error.status + ': ' + error.statusText + ' while calling ' + error.url));
   }
 }

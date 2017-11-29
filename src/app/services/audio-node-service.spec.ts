@@ -26,7 +26,7 @@ describe('NodeServiceService', () => {
     let result: Array<AudioNode>;
     backend.connections.subscribe((connection: any) => this.lastConnection = connection);
 
-    audioNodeService.getNodes().subscribe((data) => result = data['data']);
+    audioNodeService.getNodes().subscribe(data => result = data['data']);
 
     this.lastConnection.mockRespond(new Response(new ResponseOptions({
       body: JSON.stringify({ data: [mockNode] }),

@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
 
     Observable.interval(1000)
             .switchMap(() => this.audioNodeService.getNodes())
-            .subscribe((res) => this.audioNodesObservableResponse = res);
+            .subscribe(res => this.audioNodesObservableResponse = res);
 
     this.language = this.translateService.currentLang;
     this.setNextLanguage();
