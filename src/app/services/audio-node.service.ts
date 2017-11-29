@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class AudioNodeService {
   private nodesUrl: string = 'http://localhost:9000/api/nodes';
-  private limitVolumeUrl: string = '/limitSound';
+  private limitVolumeUrl: string = '/limitVolume';
   private notifyChangeUrl: string = '/change';
   private autoAdjustUrl: string = '/automaticAdjustment';
 
