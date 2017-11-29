@@ -13,7 +13,7 @@
         <mat-grid-list class="grid" cols="3">
           <mat-grid-tile [colspan]="1" [rowspan]="2">
             <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
-<app-console-slider [value]="fixNode.volume" (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
+            <app-console-slider [value]="fixNode.volume" (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="2">
             <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
