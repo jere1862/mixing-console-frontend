@@ -20,6 +20,9 @@ export class ConsoleSliderComponent implements OnInit {
   @Input()
   value: number;
 
+  @Input()
+  disabled: boolean;
+
   @Output()
   sliderChange: EventEmitter<MatSliderChange> = new EventEmitter();
 
