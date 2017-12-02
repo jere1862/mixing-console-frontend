@@ -126,7 +126,7 @@ describe('ConsoleComponent', () => {
         const observableMediaStub: ObservableMedia = fixture.debugElement.injector.get(ObservableMedia);
 
         spyOn(observableMediaStub, 'subscribe').and.callThrough();
-        spyOn(observableMediaStub, 'asObservable').and.returnValue({map: (mapFunc) => {
+        spyOn(observableMediaStub, 'asObservable').and.returnValue({map: () => {
           const mediaChange: MediaChange = new MediaChange();
           mediaChange.mqAlias = 'xl';
           return Observable.of(component.XL_NUMBER_OF_COLUMNS);
