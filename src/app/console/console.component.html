@@ -64,7 +64,7 @@
               <mat-grid-list cols="3">
                 <mat-grid-tile [colspan]="1" [rowspan]="2">
                   <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
-                  <app-console-slider [value]="mobileNode.volume" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
+                  <app-console-slider [disabled]="mobileNode.autoAdjust" [value]="mobileNode.volume" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="1" [rowspan]="2">
                   <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
