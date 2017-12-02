@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   private _language: string;
   private _nextLanguage: string;
   private _audioNodesObservableResponse: Array<AudioNode>;
-  private limitVolume: boolean;
+  limitVolume: boolean;
 
   constructor(
     private translateService: TranslateService,

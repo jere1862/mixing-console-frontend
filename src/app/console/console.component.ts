@@ -24,9 +24,9 @@ export class ConsoleComponent implements OnInit, OnChanges {
   selectedTabIndex: number;
   cols: Observable<number>;
 
-  private readonly XL_NUMBER_OF_COLUMNS: number = 3;
-  private readonly LG_NUMBER_OF_COLUMNS: number = 2;
-  private readonly MD_TO_SM_NUMBER_OF_COLUMNS: number = 1;
+  readonly XL_NUMBER_OF_COLUMNS: number = 3;
+  readonly LG_NUMBER_OF_COLUMNS: number = 2;
+  readonly MD_TO_SM_NUMBER_OF_COLUMNS: number = 1;
 
   constructor(private audioNodeService: AudioNodeService, private observableMedia: ObservableMedia) { }
 

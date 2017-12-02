@@ -31,6 +31,7 @@ class TranslateServiceStub {
 }
 
 class AudioNodeServiceStub {
+  limitVolume: jasmine.Spy = jasmine.createSpy('limitVolume').and.returnValue({ subscribe: () => {}});
   getNodes = () => Observable.of(Array.of(mockNode));
 }
 
@@ -71,17 +72,31 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should change language', () => {
-    expect(component.language).toBe(INITIAL_CURRENT_LANG);
-    component.changeLanguage();
-    expect(component.language).toBe(OTHER_LANGUAGE);
+  describe('changeLanguage', () => {
+    it('should change language', () => {
+      expect(component.language).toBe(INITIAL_CURRENT_LANG);
+      component.changeLanguage();
+      expect(component.language).toBe(OTHER_LANGUAGE);
 
-    const translateServiceStub: TranslateService = fixture.debugElement.injector.get(TranslateService);
-    expect(translateServiceStub.use).toHaveBeenCalledWith(OTHER_LANGUAGE);
+      const translateServiceStub: TranslateService = fixture.debugElement.injector.get(TranslateService);
+      expect(translateServiceStub.use).toHaveBeenCalledWith(OTHER_LANGUAGE);
+    });
+
+    it('should set next language', () => {
+      expect(component.nextLanguage).toBe(OTHER_LANGUAGE);
+      component.changeLanguage();
+      expect(component.nextLanguage).toBe(INITIAL_CURRENT_LANG);
+    });
   });
-  it('should set next language', () => {
-    expect(component.nextLanguage).toBe(OTHER_LANGUAGE);
-    component.changeLanguage();
-    expect(component.nextLanguage).toBe(INITIAL_CURRENT_LANG);
+
+  describe('onLimitVolumeChange', () => {
+    it('should call the audioNodeService', () => {
+      const audioNodeServiceStub: AudioNodeService = fixture.debugElement.injector.get(AudioNodeService);
+
+      component.limitVolume = true;
+      component.onLimitVolumeChange();
+
+      expect(audioNodeServiceStub.limitVolume).toHaveBeenCalledWith(component.limitVolume);
+    });
   });
 });
