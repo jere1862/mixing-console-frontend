@@ -7,8 +7,8 @@ import { AudioNode } from '../models/audio-node';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, OnChanges {
-  private readonly selectedMarkerOpacity: number = 1;
-  private readonly defaultMarkerOpacity: number = 0.6;
+  readonly selectedMarkerOpacity: number = 1;
+  readonly defaultMarkerOpacity: number = 0.6;
 
   @Input()
   mobileNodes: Array<AudioNode>;

@@ -23,12 +23,14 @@ describe('AppComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
   }));
+
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
 
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
+
   it('should call the translate service', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const translateService = fixture.debugElement.injector.get(TranslateService);
@@ -38,6 +40,7 @@ describe('AppComponent', () => {
     expect(translateService.setDefaultLang).toHaveBeenCalledWith('fr');
     expect(translateService.use).toHaveBeenCalledWith('fr');
   }));
+
   it('should contain a router outlet', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
 

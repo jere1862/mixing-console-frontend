@@ -6,7 +6,7 @@
     {{nextLanguage}}
   </button>
 </mat-toolbar>
-<div class="volume-limiter" *ngIf="audioNodesObservableResponse">
+<div class="volume-limiter" *ngIf="audioNodesObservableResponse && audioNodesObservableResponse.length">
   <mat-checkbox [(ngModel)]="limitVolume" (change)="onLimitVolumeChange()">{{ 'DASHBOARD.LIMIT_VOLUME' | translate }}</mat-checkbox>
 </div>
 <app-console [audioNodes]="audioNodesObservableResponse"></app-console>
