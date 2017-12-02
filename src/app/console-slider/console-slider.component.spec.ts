@@ -44,7 +44,6 @@ describe('ConsoleSliderComponent', () => {
 
       component.sliderChange.subscribe(change => {
         expect(change).toEqual(matSliderChange);
-        expect(change.value).toEqual(matSliderChange.value);
       });
 
       component.onSliderChange(matSliderChange);
