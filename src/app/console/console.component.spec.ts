@@ -97,8 +97,9 @@ describe('ConsoleComponent', () => {
   describe('onSliderChange', () => {
     it('should call the audioNodeService notifyChange with the correct arguments', () => {
       const audioNodeServiceStub: AudioNodeService = fixture.debugElement.injector.get(AudioNodeService);
-      spyOn(audioNodeServiceStub, 'notifyChange').and.callThrough();
       const matSliderChange: MatSliderChange = new MatSliderChange();
+      spyOn(audioNodeServiceStub, 'notifyChange').and.callThrough();
+
       component.fixNode = new AudioNode();
       matSliderChange.value = 69;
 
@@ -110,8 +111,9 @@ describe('ConsoleComponent', () => {
   describe('onAutoAdjustChange', () => {
     it('should call the audioNodeService notifyAutoAdjustChange with the correct arguments', () => {
       const audioNodeServiceStub: AudioNodeService = fixture.debugElement.injector.get(AudioNodeService);
-      spyOn(audioNodeServiceStub, 'notifyAutoAdjustChange').and.callThrough();
       const matCheckboxChange: MatCheckboxChange = new MatCheckboxChange();
+
+      spyOn(audioNodeServiceStub, 'notifyAutoAdjustChange').and.callThrough();
       matCheckboxChange.checked = true;
       component.mobileNodes.push(new AudioNode());
 
@@ -125,10 +127,7 @@ describe('ConsoleComponent', () => {
       it ('should return correct number of columns for the layout', () => {
         const observableMediaStub: ObservableMedia = fixture.debugElement.injector.get(ObservableMedia);
 
-        spyOn(observableMediaStub, 'subscribe').and.callThrough();
         spyOn(observableMediaStub, 'asObservable').and.returnValue({map: () => {
-          const mediaChange: MediaChange = new MediaChange();
-          mediaChange.mqAlias = 'xl';
           return Observable.of(component.XL_NUMBER_OF_COLUMNS);
         }});
         spyOn(observableMediaStub, 'isActive').and.returnValue(() => {
