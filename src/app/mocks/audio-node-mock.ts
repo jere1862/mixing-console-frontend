@@ -11,5 +11,9 @@ export const mockNode: AudioNode = {
   longitude: -71.9269062,
   isFix: false,
   markerOpacity: 0.6,
-  autoAdjust: false
+  autoAdjust: false,
+  volumeSlider: 128,
+  lowSlider: 128,
+  medSlider: 128,
+  highSlider: 128
 };

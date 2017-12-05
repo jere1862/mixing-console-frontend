@@ -10,6 +10,10 @@ export class AudioNode {
   isFix: boolean;
   markerOpacity: number;
   autoAdjust: boolean;
+  volumeSlider: number;
+  lowSlider: number;
+  medSlider: number;
+  highSlider: number;
 
   constructor() {
     this.id = 0;
@@ -23,5 +27,9 @@ export class AudioNode {
     this.isFix = false;
     this.markerOpacity = 0.6;
     this.autoAdjust = false;
+    this.volumeSlider = 128;
+    this.lowSlider = 128;
+    this.medSlider = 128;
+    this.highSlider = 128;
   }
 }

@@ -25,7 +25,11 @@ export class InMemoryNodeService implements InMemoryDbService {
         longitude: -71.9269062,
         isFix: false,
         markerOpacity: 1,
-        autoAdjust: false
+        autoAdjust: false,
+        volumeSlider: 128,
+        lowSlider: 128,
+        medSlider: 128,
+        highSlider: 128
       },
       {
         id: 2,
@@ -38,7 +42,11 @@ export class InMemoryNodeService implements InMemoryDbService {
         longitude: -71.9277089,
         isFix: false,
         markerOpacity: 0.6,
-        autoAdjust: false
+        autoAdjust: false,
+        volumeSlider: 128,
+        lowSlider: 128,
+        medSlider: 128,
+        highSlider: 128
       },
       {
         id: 3,
@@ -51,7 +59,11 @@ export class InMemoryNodeService implements InMemoryDbService {
         longitude: -71.9280432,
         isFix: false,
         markerOpacity: 0.6,
-        autoAdjust: false
+        autoAdjust: false,
+        volumeSlider: 128,
+        lowSlider: 128,
+        medSlider: 128,
+        highSlider: 128
       },
       {
         id: 4,
@@ -64,7 +76,11 @@ export class InMemoryNodeService implements InMemoryDbService {
         longitude: -71.927424,
         isFix: true,
         markerOpacity: 0.6,
-        autoAdjust: false
+        autoAdjust: false,
+        volumeSlider: 128,
+        lowSlider: 128,
+        medSlider: 128,
+        highSlider: 128
       }],
     };
     return { nodes: dbNode.nodes, limitVolume: dbNode.limitVolume };
