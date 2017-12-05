@@ -14,6 +14,10 @@ export class AudioNode {
   lowSlider: number;
   medSlider: number;
   highSlider: number;
+  lastVolumeValue?: number;
+  lastLowValue?: number;
+  lastMedValue?: number;
+  lastHighValue?: number;
 
   constructor() {
     this.id = 0;

@@ -51,6 +51,18 @@ export class ConsoleComponent implements OnInit, OnChanges {
       this.mobileNodes = this.audioNodes.filter(node => !node.isFix);
     }
     this.fixNode = this.audioNodes.find(node => node.isFix);
+    this.pushLastSlidersValues();
+  }
+
+  pushLastSlidersValues(): void {
+    this.mobileNodes.forEach((mobileNode, index) => {
+      if (mobileNode.autoAdjust) {
+        this.mobileNodes[index].lastVolumeValue = mobileNode.volumeSlider;
+        this.mobileNodes[index].lastLowValue = mobileNode.lowSlider;
+        this.mobileNodes[index].lastMedValue = mobileNode.medSlider;
+        this.mobileNodes[index].lastHighValue = mobileNode.highSlider;
+      }
+    });
   }
 
   onMarkerClicked(selectedMobileNodeIndex: number): void {

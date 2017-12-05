@@ -65,7 +65,7 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="2">
                   <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
                   <ng-container *ngIf="!mobileNode.autoAdjust">
-                    <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
+                    <app-console-slider [value]="mobileNode.lastVolumeValue" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
                   </ng-container>
                   <ng-container *ngIf="mobileNode.autoAdjust">
                     <app-console-slider [disabled]="true" [value]="mobileNode.volumeSlider" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
@@ -74,9 +74,9 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="2">
                   <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
                   <ng-container *ngIf="!mobileNode.autoAdjust">
-                    <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'low', $event)"></app-console-slider>
-                    <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'med', $event)"></app-console-slider>
-                    <app-console-slider [value]=127 (sliderChange)="onSliderChange(mobileNode, 'high', $event)"></app-console-slider>
+                    <app-console-slider [value]="mobileNode.lastLowValue" (sliderChange)="onSliderChange(mobileNode, 'low', $event)"></app-console-slider>
+                    <app-console-slider [value]="mobileNode.lastMedValue" (sliderChange)="onSliderChange(mobileNode, 'med', $event)"></app-console-slider>
+                    <app-console-slider [value]="mobileNode.lastHighValue" (sliderChange)="onSliderChange(mobileNode, 'high', $event)"></app-console-slider>
                   </ng-container>
                   <ng-container *ngIf="mobileNode.autoAdjust">
                     <app-console-slider [disabled]="true" [value]="mobileNode.lowSlider" (sliderChange)="onSliderChange(mobileNode, 'low', $event)"></app-console-slider>
