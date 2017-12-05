@@ -43,7 +43,6 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['audioNodes'] && this.audioNodes !== undefined) {
-      this.checkVolumeChange(changes);
       this.initializeAudioNodes();
     }
   }
@@ -62,6 +61,12 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   pushLastSlidersValues(): void {
+    if (this.limitVolume) {
+      if (this.fixNode.volumeSlider < this.fixNode.lastVolumeValue) {
+        console.log('Emitting event');
+      }
+      this.fixNode.lastVolumeValue = this.fixNode.volumeSlider;
+    }
     this.mobileNodes.forEach((mobileNode, index) => {
       if (mobileNode.autoAdjust) {
         this.mobileNodes[index].lastVolumeValue = mobileNode.volumeSlider;
@@ -86,6 +91,7 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   onAutoAdjustChange(node: AudioNode, matCheckboxChange: MatCheckboxChange): void {
     this.audioNodeService.notifyAutoAdjustChange(node.id, matCheckboxChange.checked).subscribe();
+    this.openAlert();
   }
 
   makeCardsResponsive(): void {
@@ -114,15 +120,8 @@ export class ConsoleComponent implements OnInit, OnChanges {
     }
   }
 
-  checkVolumeChange(changes: SimpleChanges): void {
-    const change = changes['audionodes'];
-    if (change) {
-      console.log(changes['audionodes'].previousValue.volumeSlider + ' => ' + changes['audionodes'].currentValue.volumeSlider);
-    }
-  }
-
   openAlert(): void {
-    this.translateService.get('VOLUME_EXCEEDED').subscribe(text => {
+    this.translateService.get('DASHBOARD.VOLUME_EXCEEDED').subscribe(text => {
       this.snackbar.open(text,
         null, {
           'verticalPosition': 'top',
