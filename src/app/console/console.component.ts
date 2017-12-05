@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AudioNodeService } from '../services/audio-node.service';
-import { MatTabChangeEvent, MatSliderChange, MatCheckboxChange } from '@angular/material';
+import { MatTabChangeEvent, MatSliderChange, MatCheckboxChange, MatSnackBar } from '@angular/material';
 import { AudioNode } from '../models/audio-node';
 import { SliderType } from '../console-slider/console-slider.component';
 import { ObservableMedia } from '@angular/flex-layout';
@@ -28,11 +28,12 @@ export class ConsoleComponent implements OnInit, OnChanges {
   readonly LG_NUMBER_OF_COLUMNS: number = 2;
   readonly MD_TO_SM_NUMBER_OF_COLUMNS: number = 1;
 
-  constructor(private audioNodeService: AudioNodeService, private observableMedia: ObservableMedia) { }
+  constructor(private audioNodeService: AudioNodeService, private observableMedia: ObservableMedia, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.selectedTabIndex = 0;
     this.makeCardsResponsive();
+    this.openAlert();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -93,5 +94,13 @@ export class ConsoleComponent implements OnInit, OnChanges {
         })
         .startWith(start);
     }
+  }
+
+  openAlert(): void {
+    this.snackbar.open('Le volume dépasse le niveau de son acceptable par la ville.',
+     null, {
+       'verticalPosition': 'top',
+       'duration': 4000
+      });
   }
 }

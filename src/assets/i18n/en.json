@@ -1,7 +1,8 @@
 {
   "DASHBOARD": {
     "TITLE": "Mixing console",
-    "LIMIT_VOLUME": "Limit volume to comply with municipality standards"
+    "LIMIT_VOLUME": "Limit volume to comply with municipality standards",
+    "VOLUME_EXCEEDED": "The was lowered because it exceeded the municipal limit"
   },
   "CONSOLE": {
     "LOADING": "Waiting for nodes...",

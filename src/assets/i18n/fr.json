@@ -1,7 +1,8 @@
 {
   "DASHBOARD": {
     "TITLE": "Console de mixage",
-    "LIMIT_VOLUME": "Limiter le volume aux normes municipales"
+    "LIMIT_VOLUME": "Limiter le volume aux normes municipales",
+    "VOLUME_EXCEEDED": "Le volume a été réduit car il était supérieur aux normes municipales"
   },
   "CONSOLE": {
     "LOADING": "En attente des noeuds...",
