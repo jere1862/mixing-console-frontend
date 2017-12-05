@@ -1,10 +1,10 @@
 <mat-slider
   class="slider"
-  max="257"
+  max="255"
   min="0"
   step="1"
   [value]="value"
-  (change)="onSliderChange($event)"
+  (input)="onSliderChange($event)"
   vertical="true"
   [disabled]="disabled">
 </mat-slider>

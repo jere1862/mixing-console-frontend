@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.audioNodeService.getNodes().subscribe(res => this.audioNodesObservableResponse = res);
 
-    Observable.interval(1000)
+    Observable.interval(200)
             .switchMap(() => this.audioNodeService.getNodes())
             .subscribe(res => this.audioNodesObservableResponse = res);
 
