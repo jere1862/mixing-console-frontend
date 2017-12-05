@@ -31,9 +31,9 @@ export class AudioNode {
     this.isFix = false;
     this.markerOpacity = 0.6;
     this.autoAdjust = false;
-    this.volumeSlider = 128;
-    this.lowSlider = 128;
-    this.medSlider = 128;
-    this.highSlider = 128;
+    this.volumeSlider = null;
+    this.lowSlider = null;
+    this.medSlider = null;
+    this.highSlider = null;
   }
 }

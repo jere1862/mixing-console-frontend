@@ -13,7 +13,12 @@
         <mat-grid-list class="grid" cols="3">
           <mat-grid-tile [colspan]="1" [rowspan]="2">
             <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
-            <app-console-slider [value]=127 (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
+            <ng-container *ngIf="!limitVolume"> 
+                <app-console-slider [value]="fixNode.lastVolumeValue || 127" (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
+            </ng-container>
+            <ng-container *ngIf="limitVolume"> 
+                <app-console-slider [value]=fixNode.volumeSlider (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
+            </ng-container>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="2">
             <h2 class="parameter-title">{{ 'CONSOLE.EQUALIZER' | translate }}</h2>
@@ -65,7 +70,12 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="2">
                   <h2 class="parameter-title">{{ 'CONSOLE.VOLUME' | translate }}</h2>
                   <ng-container *ngIf="!mobileNode.autoAdjust">
-                    <app-console-slider [value]="mobileNode.lastVolumeValue || 127" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
+                    <ng-container *ngIf="!limitVolume"> 
+                        <app-console-slider [value]="mobileNode.lastVolumeValue || 127" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
+                    </ng-container>
+                    <ng-container *ngIf="limitVolume">
+                        <app-console-slider [value]="mobileNode.volumeSlider" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>
+                    </ng-container>
                   </ng-container>
                   <ng-container *ngIf="mobileNode.autoAdjust">
                     <app-console-slider [disabled]="true" [value]="mobileNode.volumeSlider" (sliderChange)="onSliderChange(mobileNode, 'volume', $event)"></app-console-slider>

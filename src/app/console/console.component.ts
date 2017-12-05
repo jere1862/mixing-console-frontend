@@ -4,6 +4,7 @@ import { MatTabChangeEvent, MatSliderChange, MatCheckboxChange, MatSnackBar } fr
 import { AudioNode } from '../models/audio-node';
 import { SliderType } from '../console-slider/console-slider.component';
 import { ObservableMedia } from '@angular/flex-layout';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -18,6 +19,8 @@ import 'rxjs/add/operator/startWith';
 export class ConsoleComponent implements OnInit, OnChanges {
   @Input()
   audioNodes: Array<AudioNode>;
+  @Input()
+  limitVolume: boolean;
 
   mobileNodes: Array<AudioNode> = Array<AudioNode>();
   fixNode: AudioNode;
@@ -28,16 +31,19 @@ export class ConsoleComponent implements OnInit, OnChanges {
   readonly LG_NUMBER_OF_COLUMNS: number = 2;
   readonly MD_TO_SM_NUMBER_OF_COLUMNS: number = 1;
 
-  constructor(private audioNodeService: AudioNodeService, private observableMedia: ObservableMedia, private snackbar: MatSnackBar) { }
+  constructor(private audioNodeService: AudioNodeService,
+              private observableMedia: ObservableMedia,
+              private translateService: TranslateService,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.selectedTabIndex = 0;
     this.makeCardsResponsive();
-    this.openAlert();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['audioNodes'] && this.audioNodes !== undefined) {
+      this.checkVolumeChange(changes);
       this.initializeAudioNodes();
     }
   }
@@ -108,11 +114,20 @@ export class ConsoleComponent implements OnInit, OnChanges {
     }
   }
 
+  checkVolumeChange(changes: SimpleChanges): void {
+    const change = changes['audionodes'];
+    if (change) {
+      console.log(changes['audionodes'].previousValue.volumeSlider + ' => ' + changes['audionodes'].currentValue.volumeSlider);
+    }
+  }
+
   openAlert(): void {
-    this.snackbar.open('Le volume dépasse le niveau de son acceptable par la ville.',
-     null, {
-       'verticalPosition': 'top',
-       'duration': 4000
-      });
+    this.translateService.get('VOLUME_EXCEEDED').subscribe(text => {
+      this.snackbar.open(text,
+        null, {
+          'verticalPosition': 'top',
+          'duration': 4000
+         });
+    });
   }
 }
