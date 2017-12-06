@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewEncapsulation, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewEncapsulation, EventEmitter, SimpleChanges } from '@angular/core';
 import { MatSliderChange } from '@angular/material';
 
 export enum SliderType {
@@ -34,5 +34,4 @@ export class ConsoleSliderComponent implements OnInit {
   onSliderChange(matSliderChange: MatSliderChange): void {
     this.sliderChange.emit(matSliderChange);
   }
-
 }
