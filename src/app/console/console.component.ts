@@ -59,39 +59,43 @@ export class ConsoleComponent implements OnInit, OnChanges {
       this.mobileNodes = this.audioNodes.filter(node => !node.isFix);
     }
     this.fixNode = this.audioNodes.find(node => node.isFix);
-    this.pushLastSlidersValues();
+    this.verifyVolumeLimitAndAutoAdjust();
   }
 
-  pushLastSlidersValues(): void {
-    if (this.limitVolume) {
-      this.fixNode.lastVolumeValue = this.fixNode.volumeSlider;
-      this.mobileNodes.forEach((mobileNode, index) => {
-        this.mobileNodes[index].lastVolumeValue = mobileNode.volumeSlider;
-      });
-      // The last volumes are in global variables, these variables are then compared to the actual slider values in order
-      // to determine if the limited slider value is inferior to the lasts
-      if (this.fixNode.volumeSlider < this.lastFixVolume) {
-        this.openAlert();
-        this.lastFixVolume = this.fixNode.volumeSlider;
+  verifyVolumeLimitAndAutoAdjust(): void {
+    this.mobileNodes.forEach((mobileNode, index) => {
+      if (this.limitVolume) {
+        this.sendVolumeAlert(mobileNode, index);
       }
 
-      this.mobileNodes.forEach((mobileNode, index) => {
-        if (mobileNode.volumeSlider < this.lastMobileNodesVolumes[index]) {
-          this.openAlert();
-          this.lastMobileNodesVolumes[index] = mobileNode.volumeSlider;
-        }
-      });
-    }
-
-    // In order to keep the last value of autoAdjust when it is on
-    this.mobileNodes.forEach((mobileNode, index) => {
       if (mobileNode.autoAdjust) {
-        this.mobileNodes[index].lastVolumeValue = mobileNode.volumeSlider;
-        this.mobileNodes[index].lastLowValue = mobileNode.lowSlider;
-        this.mobileNodes[index].lastMedValue = mobileNode.medSlider;
-        this.mobileNodes[index].lastHighValue = mobileNode.highSlider;
+        this.setMobileNodesLastValues(mobileNode, index);
       }
     });
+  }
+
+  sendVolumeAlert(mobileNode: AudioNode, index: number): void {
+    this.fixNode.lastVolumeValue = this.fixNode.volumeSlider;
+    this.mobileNodes[index].lastVolumeValue = mobileNode.volumeSlider;
+
+    // The last volumes are in global variables, these variables are then compared to the actual slider values in order
+    // to determine if the limited slider value is inferior to the lasts
+    if (this.fixNode.volumeSlider < this.lastFixVolume) {
+      this.openAlert();
+      this.lastFixVolume = this.fixNode.volumeSlider;
+    }
+
+    if (mobileNode.volumeSlider < this.lastMobileNodesVolumes[index]) {
+      this.openAlert();
+      this.lastMobileNodesVolumes[index] = mobileNode.volumeSlider;
+    }
+  }
+
+  setMobileNodesLastValues(mobileNode: AudioNode, index: number): void {
+    this.mobileNodes[index].lastVolumeValue = mobileNode.volumeSlider;
+    this.mobileNodes[index].lastLowValue = mobileNode.lowSlider;
+    this.mobileNodes[index].lastMedValue = mobileNode.medSlider;
+    this.mobileNodes[index].lastHighValue = mobileNode.highSlider;
   }
 
   onMarkerClicked(selectedMobileNodeIndex: number): void {
