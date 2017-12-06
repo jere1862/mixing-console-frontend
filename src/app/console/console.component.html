@@ -17,7 +17,7 @@
                 <app-console-slider [value]="fixNode.lastVolumeValue" (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
             </ng-container>
             <ng-container *ngIf="limitVolume"> 
-                <app-console-slider [value]=fixNode.volumeSlider (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
+                <app-console-slider [value]="fixNode.volumeSlider" (sliderChange)="onSliderChange(fixNode, 'volume', $event)"></app-console-slider>
             </ng-container>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="2">

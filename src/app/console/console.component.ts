@@ -26,6 +26,8 @@ export class ConsoleComponent implements OnInit, OnChanges {
   fixNode: AudioNode;
   selectedTabIndex: number;
   cols: Observable<number>;
+  lastFixVolume: number = 0;
+  lastMobileNodesVolumes: Array<number> = new Array<number>();
 
   readonly XL_NUMBER_OF_COLUMNS: number = 3;
   readonly LG_NUMBER_OF_COLUMNS: number = 2;
@@ -62,11 +64,24 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   pushLastSlidersValues(): void {
     if (this.limitVolume) {
-      if (this.fixNode.volumeSlider < this.fixNode.lastVolumeValue) {
-        console.log('Emitting event');
+      // The last volumes are in global variables, these variables are then compared to the actual slider values in order
+      // to determine if the limited slider value is inferior to the lasts
+      if (this.fixNode.volumeSlider < this.lastFixVolume) {
+        console.log('Fix node was reduced to an inferior value');
+        this.openAlert();
+        this.lastFixVolume = this.fixNode.volumeSlider;
       }
-      this.fixNode.lastVolumeValue = this.fixNode.volumeSlider;
+
+      this.mobileNodes.forEach((mobileNode, index) => {
+        if (mobileNode.volumeSlider < this.lastMobileNodesVolumes[index]) {
+          console.log('Mobile node was reduced to an inferior value');
+          this.openAlert();
+          this.lastMobileNodesVolumes[index] = mobileNode.volumeSlider;
+        }
+      });
     }
+
+    // In order to keep the last value of autoAdjust when it is on
     this.mobileNodes.forEach((mobileNode, index) => {
       if (mobileNode.autoAdjust) {
         this.mobileNodes[index].lastVolumeValue = mobileNode.volumeSlider;
@@ -86,12 +101,27 @@ export class ConsoleComponent implements OnInit, OnChanges {
   }
 
   onSliderChange(node: AudioNode, sliderTypeString: string, matSliderChange: MatSliderChange): void {
+    if (SliderType[sliderTypeString] === 0) {
+      this.pushLastVolumeValues(node, matSliderChange.value);
+    }
+
     this.audioNodeService.notifyChange(node.id, SliderType[sliderTypeString], matSliderChange.value).subscribe();
+  }
+
+  pushLastVolumeValues(node: AudioNode, sliderValue: number): void {
+    if (node.isFix) {
+      this.lastFixVolume = sliderValue;
+    } else {
+      const index: number = this.mobileNodes.findIndex(mobileNode => {
+        return mobileNode === node;
+      });
+
+      this.lastMobileNodesVolumes[index] = sliderValue;
+    }
   }
 
   onAutoAdjustChange(node: AudioNode, matCheckboxChange: MatCheckboxChange): void {
     this.audioNodeService.notifyAutoAdjustChange(node.id, matCheckboxChange.checked).subscribe();
-    this.openAlert();
   }
 
   makeCardsResponsive(): void {
