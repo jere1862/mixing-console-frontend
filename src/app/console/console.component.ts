@@ -64,17 +64,19 @@ export class ConsoleComponent implements OnInit, OnChanges {
 
   pushLastSlidersValues(): void {
     if (this.limitVolume) {
+      this.fixNode.lastVolumeValue = this.fixNode.volumeSlider;
+      this.mobileNodes.forEach((mobileNode, index) => {
+        this.mobileNodes[index].lastVolumeValue = mobileNode.volumeSlider;
+      });
       // The last volumes are in global variables, these variables are then compared to the actual slider values in order
       // to determine if the limited slider value is inferior to the lasts
       if (this.fixNode.volumeSlider < this.lastFixVolume) {
-        console.log('Fix node was reduced to an inferior value');
         this.openAlert();
         this.lastFixVolume = this.fixNode.volumeSlider;
       }
 
       this.mobileNodes.forEach((mobileNode, index) => {
         if (mobileNode.volumeSlider < this.lastMobileNodesVolumes[index]) {
-          console.log('Mobile node was reduced to an inferior value');
           this.openAlert();
           this.lastMobileNodesVolumes[index] = mobileNode.volumeSlider;
         }
